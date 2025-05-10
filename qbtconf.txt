@@ -54,6 +54,8 @@ WebUI\Address=*
 WebUI\Password_PBKDF2="@ByteArray(8jAwoFgb6p9h497PvhHXEA==:xgTtvHznUzU8jmbQWXtRnhDD2obfxEC5x2l4cC9cssPGeeo4p9mi6BIvifJYewz5qSYSQ4FYJXf5jiM9+gR6gQ==)"
 WebUI\Port=5080
 WebUI\ServerDomains=*
+WebUI\Auth\BypassLocalAuth=true
+WebUI\Auth\SubnetWhitelist=127.0.0.1
 
 [RSS]
 AutoDownloader\DownloadRepacks=true
