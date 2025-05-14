@@ -1,2 +1,3 @@
 # Ignore sensitive credentials file
 credentials.ini 
+.aider*
