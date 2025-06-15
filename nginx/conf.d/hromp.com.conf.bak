@@ -1,0 +1,65 @@
+server {
+    listen 80;
+    server_name hromp.com www.hromp.com;
+    
+    access_log /var/log/nginx/hromp.com.access.log combined;
+    error_log /var/log/nginx/hromp.com.error.log debug;
+    
+    # ACME challenge location
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+        try_files $uri =404;
+    }
+    
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name hromp.com www.hromp.com;
+
+    access_log /var/log/nginx/hromp.com.access.log combined;
+    error_log /var/log/nginx/hromp.com.error.log debug;
+
+    ssl_certificate /etc/letsencrypt/live/hromp.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/hromp.com/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    # Security headers
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # Redirect /invoice to /invoice/
+    location = /invoice {
+        return 301 $scheme://$host/invoice/;
+    }
+
+    # Invoice Generator Application and Static Files
+    location /invoice/ {
+        proxy_pass http://localhost:8081/invoice/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+    }
+
+    # Default location
+    location / {
+        return 404;
+    }
+
+    # Error pages
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}

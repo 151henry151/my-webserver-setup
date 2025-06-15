@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hromp.com</title>
+    <style>
+        :root {
+            --primary-color: #111;
+            --secondary-color: #444;
+            --background-color: #fff;
+            --text-color: #111;
+            --card-background: #f4f4f4;
+            --card-hover: #e0e0e0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 5s, background 0s;
+        }
+        body.bgstate-romptele::after {
+            opacity: 1;
+            background: #000 url('/assets/img/png/SPLASHSCREEN.png') center center/cover no-repeat;
+        }
+        body.bgstate-pluralsight::after {
+            opacity: 1;
+            background: #000 url('/assets/img/png/pluralsightbgimage.png') center center/cover no-repeat;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        header {
+            color: var(--text-color);
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            width: 100%;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            color: var(--primary-color);
+            margin-bottom: 0.5em;
+        }
+        .services-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            width: 100%;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .service-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #222;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: width 0.3s, min-width 0.3s, max-width 0.3s, transform 1.5s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.2s, background-color 0.2s, text-shadow 0.2s;
+            box-shadow: 0 8px 25px rgba(80, 80, 80, 0.25),
+                        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+                        inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                         0 0 0 rgba(255, 255, 255, 0.8);
+            text-align: center;
+            min-width: 120px;
+            max-width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .service-link:hover, .service-link-hover {
+            background-color: #000;
+            color: #fff;
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 12px 35px rgba(80, 80, 80, 0.4),
+                        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+                        inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                         0 0 0 rgba(255, 255, 255, 0.8),
+                         0 0 10px rgba(255, 255, 255, 0.5);
+            transition: transform 1.5s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.2s, background-color 0.2s, text-shadow 0.2s;
+        }
+        .service-link:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 15px rgba(80, 80, 80, 0.2),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.2),
+                        inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),
+                         0 0 0 rgba(255, 255, 255, 0.8);
+        }
+        .service-link {
+            /* When not hovered, return to normal size over 1s */
+            transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.2s, background-color 0.2s, text-shadow 0.2s;
+        }
+        @media (max-width: 700px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 500px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .profile-pic {
+            display: block;
+            margin: 0 auto 1.2em auto;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+        }
+        .resume-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background: #fff url('/assets/img/Henry_Romp_Resume-05-08-2025.jpg') top center no-repeat;
+            background-size: 70vw auto;
+            background-repeat: no-repeat;
+            background-position: center -140px;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 3s;
+        }
+        body.resume-hover .resume-bg {
+            opacity: 1;
+        }
+        body.resume-hover .main-container,
+        body.resume-hover .profile-pic,
+        body.resume-hover .logo {
+            opacity: 0;
+            transition: opacity 3s;
+        }
+        body.resume-hover .resume-link {
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        body.resume-hover .resume-link:hover {
+            opacity: 0.65;
+            transition: opacity 0.3s;
+        }
+        header .resume-link {
+            display: block;
+            margin: 1.2em auto 0 auto;
+            text-align: center;
+            max-width: 220px;
+        }
+        .romptele-link {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            background: #222;
+            transition: transform 1.5s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.2s, background-color 0.2s, text-shadow 0.2s;
+        }
+        .romptele-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('/assets/img/png/icon-transparent-romptele.png') center center/contain no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s;
+            z-index: 0;
+            background-color: transparent;
+        }
+        .romptele-link span {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            transition: opacity 1.5s;
+        }
+        .romptele-link:hover, .romptele-link.romptele-hover {
+            transform: scale(4);
+        }
+        .romptele-link:hover::before, .romptele-link.romptele-hover::before {
+            opacity: 1;
+        }
+        .romptele-link:hover span, .romptele-link.romptele-hover span {
+            opacity: 0;
+        }
+        body.romptele-hover-bg {
+        }
+        .header-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        body.bgstate-pluralsight .services-card .service-link {
+            opacity: 0 !important;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-bg"></div>
+    <header>
+        <img src="/assets/img/jpg/PROFILE_PIC_MED_RES.jpg" alt="Henry Romp profile picture" class="profile-pic">
+    </header>
+    <div class="container">
+        <div class="header-card">
+            <div class="logo">Henry Romp</div>
+            <a href="/assets/doc/pdf/Henry_Romp_Resume-05-08-2025.pdf" class="service-link resume-link" target="_blank">Resume</a>
+        </div>
+    </div>
+    <div class="container main-container">
+        <div class="services-card">
+            <div class="services-grid">
+                <a href="https://rompfamily.com" class="service-link">Rompfamily.com</a>
+                <a href="https://romptele.com" class="service-link romptele-link" id="romptele-btn"><span>RompTele</span></a>
+                <a href="https://app.pluralsight.com/profile/henry-romp" class="service-link" id="pluralsight-btn">Pluralsight</a>
+                <a href="https://github.com/151henry151" class="service-link">Github</a>
+                <a href="mailto:151henry151@gmail.com" class="service-link">Email</a>
+                <a href="tel:+18024587299" class="service-link">Call</a>
+                <a href="pgp.txt" class="service-link">PGP Key</a>
+                <a href="/invoice" class="service-link">Invoice Generator</a>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Resume button hover effect
+        var resumeBtn = document.querySelector('.resume-link');
+        var originalText = resumeBtn.textContent;
+        var pdfUrl = resumeBtn.getAttribute('href');
+        var pdfFilename = pdfUrl.split('/').pop();
+        resumeBtn.addEventListener('mouseenter', function() {
+            document.body.classList.add('resume-hover');
+            resumeBtn.textContent = pdfFilename;
+        });
+        resumeBtn.addEventListener('mouseleave', function() {
+            document.body.classList.remove('resume-hover');
+            resumeBtn.textContent = originalText;
+        });
+
+        // Services card background hover logic (single state)
+        var servicesCard = document.querySelector('.services-card');
+        var rompteleBtn = document.getElementById('romptele-btn');
+        var pluralsightBtn = document.getElementById('pluralsight-btn');
+        function setBgState(state) {
+            document.body.classList.remove('bgstate-romptele', 'bgstate-pluralsight');
+            if (state) document.body.classList.add('bgstate-' + state);
+        }
+        servicesCard.addEventListener('mousemove', function(e) {
+            if (pluralsightBtn.matches(':hover')) {
+                setBgState('pluralsight');
+            } else if (rompteleBtn.matches(':hover')) {
+                setBgState('romptele');
+            } else {
+                setBgState('');
+            }
+        });
+        servicesCard.addEventListener('mouseleave', function() {
+            setBgState('');
+        });
+
+        // Email, Call, and Github button hover text swap
+        var emailBtn = document.querySelector('a[href^="mailto:"]');
+        var callBtn = document.querySelector('a[href^="tel:"]');
+        var githubBtn = document.querySelector('a[href^="https://github.com/"]');
+        var emailOriginal = emailBtn.textContent;
+        var callOriginal = callBtn.textContent;
+        var githubOriginal = githubBtn.textContent;
+        var emailAddress = '151henry151@gmail.com';
+        var phoneNumber = '802-458-7299';
+        var githubUrl = 'github.com/151henry151';
+        emailBtn.addEventListener('mouseenter', function() {
+            emailBtn.textContent = emailAddress;
+        });
+        emailBtn.addEventListener('mouseleave', function() {
+            emailBtn.textContent = emailOriginal;
+        });
+        callBtn.addEventListener('mouseenter', function() {
+            callBtn.textContent = phoneNumber;
+        });
+        callBtn.addEventListener('mouseleave', function() {
+            callBtn.textContent = callOriginal;
+        });
+        githubBtn.addEventListener('mouseenter', function() {
+            githubBtn.textContent = githubUrl;
+        });
+        githubBtn.addEventListener('mouseleave', function() {
+            githubBtn.textContent = githubOriginal;
+        });
+    });
+    </script>
+</body>
+</html> 

@@ -16,8 +16,12 @@ scrape_configs:
 
   - job_name: 'nginx'
     static_configs:
-      - targets: ['localhost:9114']
+      - targets: ['nginx_exporter:9114']
 
-  - job_name: 'jellyfin'
+  # - job_name: 'jellyfin'
+  #   static_configs:
+  #     - targets: ['jellyfin_exporter:8080']
+
+  - job_name: 'ebpf'
     static_configs:
-      - targets: ['jellyfin_exporter:8080'] 
+      - targets: ['ebpf_exporter:9435'] 
