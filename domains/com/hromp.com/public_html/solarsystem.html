@@ -135,7 +135,7 @@
             
             <button onclick="calculateDistance()">Calculate Distance</button>
             
-            <div id="distanceResults" class="result"></div>
+            <div id="distanceResult" class="result"></div>
         </div>
 
         <a href="/" class="back-link">Back to Home</a>
@@ -195,34 +195,11 @@
             const planet1 = document.getElementById('object1').value;
             const planet2 = document.getElementById('object2').value;
             const sunDiameterInches = parseFloat(document.getElementById('sunDiameter').value);
-
-            if (isNaN(sunDiameterInches) || sunDiameterInches <= 0) {
-                alert('Please enter a valid diameter for the sun first');
-                return;
-            }
-
-            if (planet1 === planet2) {
-                document.getElementById('distanceResults').innerHTML = 
-                    '<p>Please select two different objects.</p>';
-                return;
-            }
-
-            // Calculate scale factor based on sun's diameter (real sun diameter in mm / model sun diameter in mm)
-            const realSunDiameterMM = 1392684000000;
-            const modelSunDiameterMM = sunDiameterInches * 25.4;
-            const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
-
-            // Get distances from sun (in millions of km)
-            const distance1 = planet1 === 'sun' ? 0 : planetData[planet1].distance;
-            const distance2 = planet2 === 'sun' ? 0 : planetData[planet2].distance;
-            // Calculate actual distance between objects (in millions of km)
-            const actualDistanceMM = Math.abs(distance1 - distance2) * 1e9; // millions of km to mm
-            // Convert to scaled distance in feet
-            const scaledDistanceFeet = (actualDistanceMM / scaleFactor) / 304.8; // mm to feet
-
-            document.getElementById('distanceResults').innerHTML = 
-                `<p>Scaled distance between ${planetData[planet1].name} and ${planetData[planet2].name}:<br>` +
-                `${scaledDistanceFeet.toFixed(1)} feet</p>`;
+            const scaleFactor = sunDiameterInches / planetData.sun.diameter;
+            const distance1 = planetData[planet1].distance * scaleFactor;
+            const distance2 = planetData[planet2].distance * scaleFactor;
+            const distanceBetween = Math.abs(distance1 - distance2);
+            document.getElementById('distanceResult').innerHTML = `<p>Distance between ${planet1} and ${planet2}: ${distanceBetween.toFixed(2)} inches</p>`;
         }
     </script>
 </body>
