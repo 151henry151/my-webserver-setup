@@ -101,10 +101,10 @@
 
         <div class="calculator">
             <h2>Distance Calculator</h2>
-            <p>Calculate the distance between any two planets in the solar system.</p>
+            <p>Calculate the distance between any two objects in the solar system.</p>
             
             <div class="input-group">
-                <label for="planet1">First Planet:</label>
+                <label for="planet1">First Object:</label>
                 <select id="planet1" class="planet-select">
                     <option value="sun">Sun</option>
                     <option value="mercury">Mercury</option>
@@ -119,7 +119,7 @@
             </div>
             
             <div class="input-group">
-                <label for="planet2">Second Planet:</label>
+                <label for="planet2">Second Object:</label>
                 <select id="planet2" class="planet-select">
                     <option value="sun">Sun</option>
                     <option value="mercury">Mercury</option>
@@ -203,7 +203,7 @@
 
             if (planet1 === planet2) {
                 document.getElementById('distanceResults').innerHTML = 
-                    '<p>Please select two different planets.</p>';
+                    '<p>Please select two different objects.</p>';
                 return;
             }
 
@@ -215,7 +215,7 @@
             // Get distances from sun (in millions of km)
             const distance1 = planet1 === 'sun' ? 0 : planetData[planet1].distance;
             const distance2 = planet2 === 'sun' ? 0 : planetData[planet2].distance;
-            // Calculate actual distance between planets (in millions of km)
+            // Calculate actual distance between objects (in millions of km)
             const actualDistanceMM = Math.abs(distance1 - distance2) * 1e9; // millions of km to mm
             // Convert to scaled distance in feet
             const scaledDistanceFeet = (actualDistanceMM / scaleFactor) / 304.8; // mm to feet
