@@ -87,11 +87,11 @@
         
         <div class="calculator">
             <h2>Scale Model Calculator</h2>
-            <p>Enter a scale factor to calculate the scaled sizes and distances of the solar system objects.</p>
+            <p>In your scale model of the solar system, what is the diameter of the sun, in inches?</p>
             
             <div class="input-group">
-                <label for="scale">Scale Factor (1:X):</label>
-                <input type="number" id="scale" min="1" value="1000000000">
+                <label for="sunDiameter">Sun's Diameter (inches):</label>
+                <input type="number" id="sunDiameter" min="0.1" step="0.1" value="36">
             </div>
             
             <button onclick="calculateScale()">Calculate</button>
@@ -141,6 +141,7 @@
 
     <script>
         const planetData = {
+            sun: { name: "Sun", diameter: 1392684 },
             mercury: { name: "Mercury", distance: 57.9, diameter: 4879 },
             venus: { name: "Venus", distance: 108.2, diameter: 12104 },
             earth: { name: "Earth", distance: 149.6, diameter: 12756 },
@@ -152,19 +153,31 @@
         };
 
         function calculateScale() {
-            const scale = parseFloat(document.getElementById('scale').value);
-            if (isNaN(scale) || scale <= 0) {
-                alert('Please enter a valid scale factor');
+            const sunDiameterInches = parseFloat(document.getElementById('sunDiameter').value);
+            if (isNaN(sunDiameterInches) || sunDiameterInches <= 0) {
+                alert('Please enter a valid diameter for the sun');
                 return;
             }
 
-            let results = '<h3>Scaled Sizes and Distances:</h3>';
+            // Calculate scale factor based on sun's diameter
+            const scaleFactor = planetData.sun.diameter / (sunDiameterInches * 25.4); // Convert inches to mm
+
+            let results = '<h3>Your Scale Model:</h3>';
+            results += `<p><strong>Scale Factor:</strong> 1:${Math.round(scaleFactor).toLocaleString()}</p>`;
+            results += '<h4>Planet Sizes:</h4>';
+            
             for (const [key, planet] of Object.entries(planetData)) {
-                const scaledDistance = (planet.distance * 1000000) / scale;
-                const scaledDiameter = planet.diameter / scale;
-                results += `<p><strong>${planet.name}:</strong><br>`;
-                results += `Distance from Sun: ${scaledDistance.toFixed(2)} meters<br>`;
-                results += `Diameter: ${scaledDiameter.toFixed(2)} meters</p>`;
+                if (key === 'sun') continue; // Skip sun as we already have its size
+                const scaledDiameter = (planet.diameter / scaleFactor) / 25.4; // Convert to inches
+                results += `<p><strong>${planet.name}:</strong> ${scaledDiameter.toFixed(3)} inches</p>`;
+            }
+
+            results += '<h4>Distances from Sun:</h4>';
+            for (const [key, planet] of Object.entries(planetData)) {
+                if (key === 'sun') continue; // Skip sun
+                const scaledDistance = (planet.distance * 1000000) / scaleFactor; // Convert to meters
+                const scaledDistanceFeet = scaledDistance * 3.28084; // Convert to feet
+                results += `<p><strong>${planet.name}:</strong> ${scaledDistanceFeet.toFixed(1)} feet</p>`;
             }
 
             document.getElementById('scaleResults').innerHTML = results;
