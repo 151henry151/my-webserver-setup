@@ -49,27 +49,26 @@ function updateTime() {
 // Calculate and draw the terminator
 function updateTerminator() {
     const now = new Date();
-    const julianDate = (now.getTime() / 86400000) + 2440587.5;
-    
-    // Calculate sun position
-    const sunLongitude = calculateSunLongitude(julianDate);
-    const sunLatitude = calculateSunLatitude(julianDate);
-    
-    // Create terminator points
+    const jd = getJulianDate(now);
+    const sunPos = getSubsolarPoint(jd, now);
+    const subsolarLon = sunPos.longitude;
+    const subsolarLat = sunPos.latitude;
+
+    // Create terminator points using the accurate formula
     const terminatorPoints = [];
     for (let lon = -180; lon <= 180; lon += 1) {
-        const lat = calculateTerminatorLatitude(lon, sunLongitude, sunLatitude);
+        const lat = calculateTerminatorLatitudeAccurate(lon, subsolarLon, subsolarLat);
         terminatorPoints.push([lon, lat]);
     }
-    
+
     // Draw terminator
     const terminatorLine = d3.geoPath()
         .projection(projection)
         .pointRadius(1);
-    
+
     // Remove previous terminator
     svg.selectAll('.terminator').remove();
-    
+
     // Draw new terminator
     svg.append('path')
         .datum({type: 'LineString', coordinates: terminatorPoints})
@@ -78,38 +77,46 @@ function updateTerminator() {
         .attr('stroke', '#666')
         .attr('stroke-width', 2)
         .attr('fill', 'none');
-    
+
     // Update time display
     updateTime();
 }
 
-// Calculate sun's longitude
-function calculateSunLongitude(julianDate) {
-    const T = (julianDate - 2451545.0) / 36525;
-    const M = 357.52911 + T * (35999.05029 - 0.0001537 * T);
-    const e = 0.016708634 - T * (0.000042037 + 0.0000001267 * T);
-    const C = (1.914602 - T * (0.004817 + 0.000014 * T)) * Math.sin(M * Math.PI / 180) +
-              (0.019993 - 0.000101 * T) * Math.sin(2 * M * Math.PI / 180) +
-              0.000289 * Math.sin(3 * M * Math.PI / 180);
-    const L = 280.46646 + T * (36000.76983 + 0.0003032 * T) + C;
-    return L % 360;
+// Julian date calculation
+function getJulianDate(date) {
+    return (date.getTime() / 86400000) + 2440587.5;
 }
 
-// Calculate sun's latitude (simplified)
-function calculateSunLatitude(julianDate) {
-    const T = (julianDate - 2451545.0) / 36525;
-    return 23.439 - 0.00000036 * T;
+// Calculate subsolar point (longitude and latitude)
+function getSubsolarPoint(jd, date) {
+    // Number of days since J2000.0
+    const n = jd - 2451545.0;
+    // Mean longitude of the Sun
+    const L = (280.46 + 0.9856474 * n) % 360;
+    // Mean anomaly of the Sun
+    const g = (357.528 + 0.9856003 * n) % 360;
+    // Ecliptic longitude of the Sun
+    const lambda = L + 1.915 * Math.sin(g * Math.PI / 180) + 0.02 * Math.sin(2 * g * Math.PI / 180);
+    // Obliquity of the ecliptic
+    const epsilon = 23.439 - 0.0000004 * n;
+    // Declination (latitude) of the subsolar point
+    const delta = Math.asin(Math.sin(epsilon * Math.PI / 180) * Math.sin(lambda * Math.PI / 180)) * 180 / Math.PI;
+    // Equation of time (in minutes)
+    const EoT = L - 0.0057183 - lambda + 2.466 * Math.sin(2 * lambda * Math.PI / 180) - 0.053 * Math.sin(4 * lambda * Math.PI / 180);
+    // Current UTC time in minutes
+    const utcMinutes = date.getUTCHours() * 60 + date.getUTCMinutes() + date.getUTCSeconds() / 60;
+    // Subsolar longitude
+    const subsolarLon = ((720 - utcMinutes - EoT) / 4) % 360;
+    return { longitude: subsolarLon, latitude: delta };
 }
 
-// Calculate terminator latitude for a given longitude
-function calculateTerminatorLatitude(longitude, sunLongitude, sunLatitude) {
-    const sunLongitudeRad = sunLongitude * Math.PI / 180;
-    const sunLatitudeRad = sunLatitude * Math.PI / 180;
-    const longitudeRad = longitude * Math.PI / 180;
-    
-    const terminatorLatitude = Math.asin(
-        Math.sin(sunLatitudeRad) * Math.cos(longitudeRad - sunLongitudeRad)
-    ) * 180 / Math.PI;
-    
-    return terminatorLatitude;
+// Accurate terminator latitude calculation
+function calculateTerminatorLatitudeAccurate(lon, subsolarLon, subsolarLat) {
+    // Convert to radians
+    const lambda = lon * Math.PI / 180;
+    const lambda_s = subsolarLon * Math.PI / 180;
+    const delta = subsolarLat * Math.PI / 180;
+    // Formula for the latitude of the terminator
+    const phi = Math.atan(-Math.cos(lambda - lambda_s) / Math.tan(delta));
+    return phi * 180 / Math.PI;
 } 
