@@ -86,8 +86,8 @@
         <h1>Solar System Calculator</h1>
         
         <div class="calculator">
-            <h2>Scale Model Calculator</h2>
-            <p>In your scale model of the solar system, what is the diameter of the sun, in inches?</p>
+            <h2>Solar System Scale Model Calculator</h2>
+            <p>Enter the sun's diameter in inches to calculate the scaled planet diameters:</p>
             
             <div class="input-group">
                 <label for="sunDiameter">Sun's Diameter (inches):</label>
@@ -168,7 +168,7 @@
 
             let results = '<h3>Your Scale Model:</h3>';
             results += `<p><strong>Scale Factor:</strong> 1:${Math.round(scaleFactor).toLocaleString()}</p>`;
-            results += '<h4>Planet Sizes:</h4>';
+            results += '<h4>Planet Diameters:</h4>';
             
             for (const [key, planet] of Object.entries(planetData)) {
                 if (key === 'sun') continue; // Skip sun as we already have its size
