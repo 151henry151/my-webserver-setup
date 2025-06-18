@@ -143,7 +143,7 @@
 
     <script>
         const planetData = {
-            sun: { name: "Sun", diameter: 1392684 },
+            sun: { name: "Sun", diameter: 1392684000 },
             mercury: { name: "Mercury", distance: 57.9, diameter: 4879 },
             venus: { name: "Venus", distance: 108.2, diameter: 12104 },
             earth: { name: "Earth", distance: 149.6, diameter: 12756 },
@@ -161,8 +161,10 @@
                 return;
             }
 
-            // Calculate scale factor based on sun's diameter
-            const scaleFactor = planetData.sun.diameter / (sunDiameterInches * 25.4); // Convert inches to mm
+            // Calculate scale factor based on sun's diameter (real sun diameter in mm / model sun diameter in mm)
+            const realSunDiameterMM = 1392684000; // 1,392,684 km = 1,392,684,000 meters = 1,392,684,000,000 mm
+            const modelSunDiameterMM = sunDiameterInches * 25.4;
+            const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
 
             let results = '<h3>Your Scale Model:</h3>';
             results += `<p><strong>Scale Factor:</strong> 1:${Math.round(scaleFactor).toLocaleString()}</p>`;
@@ -170,15 +172,19 @@
             
             for (const [key, planet] of Object.entries(planetData)) {
                 if (key === 'sun') continue; // Skip sun as we already have its size
-                const scaledDiameter = (planet.diameter / scaleFactor) / 25.4; // Convert to inches
+                // planet.diameter is in km, convert to mm
+                const planetDiameterMM = planet.diameter * 1e6; // km to mm
+                const scaledDiameter = (planetDiameterMM / scaleFactor) / 25.4; // Convert to inches
                 results += `<p><strong>${planet.name}:</strong> ${scaledDiameter.toFixed(3)} inches</p>`;
             }
 
             results += '<h4>Distances from Sun:</h4>';
             for (const [key, planet] of Object.entries(planetData)) {
                 if (key === 'sun') continue; // Skip sun
-                const scaledDistance = (planet.distance * 1000000) / scaleFactor; // Convert to meters
-                const scaledDistanceFeet = scaledDistance * 3.28084; // Convert to feet
+                // planet.distance is in millions of km, so *1e9 to get mm
+                const planetDistanceMM = planet.distance * 1e9;
+                const scaledDistance = planetDistanceMM / scaleFactor; // in mm
+                const scaledDistanceFeet = (scaledDistance / 304.8); // mm to feet
                 results += `<p><strong>${planet.name}:</strong> ${scaledDistanceFeet.toFixed(1)} feet</p>`;
             }
 
@@ -201,19 +207,18 @@
                 return;
             }
 
-            // Calculate scale factor based on sun's diameter
-            const scaleFactor = planetData.sun.diameter / (sunDiameterInches * 25.4); // Convert inches to mm
+            // Calculate scale factor based on sun's diameter (real sun diameter in mm / model sun diameter in mm)
+            const realSunDiameterMM = 1392684000;
+            const modelSunDiameterMM = sunDiameterInches * 25.4;
+            const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
 
-            // Get distances from sun (in km)
+            // Get distances from sun (in millions of km)
             const distance1 = planet1 === 'sun' ? 0 : planetData[planet1].distance;
             const distance2 = planet2 === 'sun' ? 0 : planetData[planet2].distance;
-            
-            // Calculate actual distance between planets (in km)
-            const actualDistance = Math.abs(distance1 - distance2);
-            
+            // Calculate actual distance between planets (in millions of km)
+            const actualDistanceMM = Math.abs(distance1 - distance2) * 1e9; // millions of km to mm
             // Convert to scaled distance in feet
-            const scaledDistance = (actualDistance * 1000000) / scaleFactor; // Convert to meters
-            const scaledDistanceFeet = scaledDistance * 3.28084; // Convert to feet
+            const scaledDistanceFeet = (actualDistanceMM / scaleFactor) / 304.8; // mm to feet
 
             document.getElementById('distanceResults').innerHTML = 
                 `<p>Scaled distance between ${planetData[planet1].name} and ${planetData[planet2].name}:<br>` +
