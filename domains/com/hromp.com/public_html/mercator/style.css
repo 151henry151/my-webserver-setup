@@ -4,6 +4,9 @@
     --background-color: #f5f6fa;
     --text-color: #2c3e50;
     --border-color: #dcdde1;
+    --land-color: #b0b0b0;
+    --water-color: #e6f2fa;
+    --night-shade: rgba(44, 62, 80, 0.35);
 }
 
 * {
@@ -52,6 +55,16 @@ h1 {
 #map {
     width: 100%;
     height: 500px;
+    background: var(--water-color);
+}
+
+.land {
+    fill: var(--land-color);
+}
+
+.night-region {
+    fill: var(--night-shade);
+    stroke: none;
 }
 
 .info-panel {

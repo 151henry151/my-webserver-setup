@@ -12,25 +12,25 @@ const svg = d3.select('#map')
     .attr('width', width)
     .attr('height', height);
 
-// Add background
+// Add background (water)
 svg.append('rect')
     .attr('width', width)
     .attr('height', height)
-    .attr('fill', '#f5f6fa');
+    .attr('fill', 'var(--water-color)');
 
 // Load world map data
 d3.json('data/countries-110m.json')
     .then(data => {
         const countries = topojson.feature(data, data.objects.countries);
         
-        // Draw countries
+        // Draw countries (land)
         svg.append('g')
             .selectAll('path')
             .data(countries.features)
             .enter()
             .append('path')
             .attr('d', path)
-            .attr('fill', '#e0e0e0')
+            .attr('class', 'land')
             .attr('stroke', '#fff')
             .attr('stroke-width', 0.5);
         
@@ -61,19 +61,31 @@ function updateTerminator() {
         terminatorPoints.push([lon, lat]);
     }
 
-    // Draw terminator
-    const terminatorLine = d3.geoPath()
-        .projection(projection)
-        .pointRadius(1);
+    // Build the night region polygon (from -180 to 180, then down to -90, across, and back up)
+    const nightPolygon = [];
+    // Top edge (from -180,90 to 180,90)
+    nightPolygon.push([-180, 90]);
+    nightPolygon.push(...terminatorPoints);
+    nightPolygon.push([180, 90]);
+    nightPolygon.push([180, -90]);
+    nightPolygon.push([-180, -90]);
+    nightPolygon.push([-180, 90]);
 
-    // Remove previous terminator
+    // Remove previous night region and terminator
+    svg.selectAll('.night-region').remove();
     svg.selectAll('.terminator').remove();
+
+    // Draw night region
+    svg.append('path')
+        .datum({type: 'Polygon', coordinates: [nightPolygon]})
+        .attr('class', 'night-region')
+        .attr('d', path);
 
     // Draw new terminator
     svg.append('path')
         .datum({type: 'LineString', coordinates: terminatorPoints})
         .attr('class', 'terminator')
-        .attr('d', terminatorLine)
+        .attr('d', path)
         .attr('stroke', '#666')
         .attr('stroke-width', 2)
         .attr('fill', 'none');
