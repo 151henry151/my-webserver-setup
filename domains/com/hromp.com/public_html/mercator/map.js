@@ -19,7 +19,7 @@ svg.append('rect')
     .attr('fill', '#f5f6fa');
 
 // Load world map data
-d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+d3.json('data/countries-110m.json')
     .then(data => {
         const countries = topojson.feature(data, data.objects.countries);
         
