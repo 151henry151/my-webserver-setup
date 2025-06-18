@@ -106,6 +106,7 @@
             <div class="input-group">
                 <label for="planet1">First Planet:</label>
                 <select id="planet1" class="planet-select">
+                    <option value="sun">Sun</option>
                     <option value="mercury">Mercury</option>
                     <option value="venus">Venus</option>
                     <option value="earth">Earth</option>
@@ -120,6 +121,7 @@
             <div class="input-group">
                 <label for="planet2">Second Planet:</label>
                 <select id="planet2" class="planet-select">
+                    <option value="sun">Sun</option>
                     <option value="mercury">Mercury</option>
                     <option value="venus">Venus</option>
                     <option value="earth">Earth</option>
@@ -186,6 +188,12 @@
         function calculateDistance() {
             const planet1 = document.getElementById('planet1').value;
             const planet2 = document.getElementById('planet2').value;
+            const sunDiameterInches = parseFloat(document.getElementById('sunDiameter').value);
+
+            if (isNaN(sunDiameterInches) || sunDiameterInches <= 0) {
+                alert('Please enter a valid diameter for the sun first');
+                return;
+            }
 
             if (planet1 === planet2) {
                 document.getElementById('distanceResults').innerHTML = 
@@ -193,13 +201,23 @@
                 return;
             }
 
-            const distance1 = planetData[planet1].distance;
-            const distance2 = planetData[planet2].distance;
-            const distance = Math.abs(distance1 - distance2);
+            // Calculate scale factor based on sun's diameter
+            const scaleFactor = planetData.sun.diameter / (sunDiameterInches * 25.4); // Convert inches to mm
+
+            // Get distances from sun (in km)
+            const distance1 = planet1 === 'sun' ? 0 : planetData[planet1].distance;
+            const distance2 = planet2 === 'sun' ? 0 : planetData[planet2].distance;
+            
+            // Calculate actual distance between planets (in km)
+            const actualDistance = Math.abs(distance1 - distance2);
+            
+            // Convert to scaled distance in feet
+            const scaledDistance = (actualDistance * 1000000) / scaleFactor; // Convert to meters
+            const scaledDistanceFeet = scaledDistance * 3.28084; // Convert to feet
 
             document.getElementById('distanceResults').innerHTML = 
-                `<p>Distance between ${planetData[planet1].name} and ${planetData[planet2].name}:<br>` +
-                `${distance.toFixed(1)} million kilometers</p>`;
+                `<p>Scaled distance between ${planetData[planet1].name} and ${planetData[planet2].name}:<br>` +
+                `${scaledDistanceFeet.toFixed(1)} feet</p>`;
         }
     </script>
 </body>
