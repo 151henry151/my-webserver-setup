@@ -106,30 +106,30 @@
             <div class="input-group">
                 <label for="object1">First Object:</label>
                 <select id="object1">
-                    <option value="Sun">Sun</option>
-                    <option value="Mercury">Mercury</option>
-                    <option value="Venus">Venus</option>
-                    <option value="Earth" selected>Earth</option>
-                    <option value="Mars">Mars</option>
-                    <option value="Jupiter">Jupiter</option>
-                    <option value="Saturn">Saturn</option>
-                    <option value="Uranus">Uranus</option>
-                    <option value="Neptune">Neptune</option>
+                    <option value="sun">Sun</option>
+                    <option value="mercury">Mercury</option>
+                    <option value="venus">Venus</option>
+                    <option value="earth" selected>Earth</option>
+                    <option value="mars">Mars</option>
+                    <option value="jupiter">Jupiter</option>
+                    <option value="saturn">Saturn</option>
+                    <option value="uranus">Uranus</option>
+                    <option value="neptune">Neptune</option>
                 </select>
             </div>
             
             <div class="input-group">
                 <label for="object2">Second Object:</label>
                 <select id="object2">
-                    <option value="Sun">Sun</option>
-                    <option value="Mercury">Mercury</option>
-                    <option value="Venus">Venus</option>
-                    <option value="Earth">Earth</option>
-                    <option value="Mars" selected>Mars</option>
-                    <option value="Jupiter">Jupiter</option>
-                    <option value="Saturn">Saturn</option>
-                    <option value="Uranus">Uranus</option>
-                    <option value="Neptune">Neptune</option>
+                    <option value="sun">Sun</option>
+                    <option value="mercury">Mercury</option>
+                    <option value="venus">Venus</option>
+                    <option value="earth">Earth</option>
+                    <option value="mars" selected>Mars</option>
+                    <option value="jupiter">Jupiter</option>
+                    <option value="saturn">Saturn</option>
+                    <option value="uranus">Uranus</option>
+                    <option value="neptune">Neptune</option>
                 </select>
             </div>
             
@@ -195,11 +195,17 @@
             const planet1 = document.getElementById('object1').value;
             const planet2 = document.getElementById('object2').value;
             const sunDiameterInches = parseFloat(document.getElementById('sunDiameter').value);
-            const scaleFactor = sunDiameterInches / planetData.sun.diameter;
-            const distance1 = planetData[planet1].distance * scaleFactor;
-            const distance2 = planetData[planet2].distance * scaleFactor;
-            const distanceBetween = Math.abs(distance1 - distance2);
-            document.getElementById('distanceResult').innerHTML = `<p>Distance between ${planet1} and ${planet2}: ${distanceBetween.toFixed(2)} inches</p>`;
+            if (isNaN(sunDiameterInches) || sunDiameterInches <= 0) {
+                alert('Please enter a valid diameter for the sun');
+                return;
+            }
+            const realSunDiameterMM = 1392684000000;
+            const modelSunDiameterMM = sunDiameterInches * 25.4;
+            const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
+            const distance1MM = planet1 === 'sun' ? 0 : planetData[planet1].distance * 1e9;
+            const distance2MM = planet2 === 'sun' ? 0 : planetData[planet2].distance * 1e9;
+            const scaledDistanceInches = Math.abs(distance1MM - distance2MM) / scaleFactor / 25.4;
+            document.getElementById('distanceResult').innerHTML = `<p>Distance between ${planetData[planet1].name} and ${planetData[planet2].name}: ${scaledDistanceInches.toFixed(2)} inches</p>`;
         }
     </script>
 </body>
