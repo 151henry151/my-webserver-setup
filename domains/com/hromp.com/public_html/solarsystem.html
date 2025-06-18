@@ -183,9 +183,8 @@
                 if (key === 'sun') continue; // Skip sun
                 // planet.distance is in millions of km, so *1e9 to get mm
                 const planetDistanceMM = planet.distance * 1e9;
-                const scaledDistance = planetDistanceMM / scaleFactor; // in mm
-                const scaledDistanceFeet = (scaledDistance / 304.8); // mm to feet
-                results += `<p><strong>${planet.name}:</strong> ${scaledDistanceFeet.toFixed(1)} feet</p>`;
+                const scaledDistanceInches = planetDistanceMM / scaleFactor / 25.4; // mm to inches
+                results += `<p><strong>${planet.name}:</strong> ${scaledDistanceInches.toFixed(2)} inches</p>`;
             }
 
             document.getElementById('scaleResults').innerHTML = results;
