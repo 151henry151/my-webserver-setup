@@ -104,32 +104,32 @@
             <p>Calculate the distance between any two objects in the solar system.</p>
             
             <div class="input-group">
-                <label for="planet1">First Object:</label>
-                <select id="planet1" class="planet-select">
-                    <option value="sun">Sun</option>
-                    <option value="mercury">Mercury</option>
-                    <option value="venus">Venus</option>
-                    <option value="earth">Earth</option>
-                    <option value="mars">Mars</option>
-                    <option value="jupiter">Jupiter</option>
-                    <option value="saturn">Saturn</option>
-                    <option value="uranus">Uranus</option>
-                    <option value="neptune">Neptune</option>
+                <label for="object1">First Object:</label>
+                <select id="object1">
+                    <option value="Sun">Sun</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth" selected>Earth</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
                 </select>
             </div>
             
             <div class="input-group">
-                <label for="planet2">Second Object:</label>
-                <select id="planet2" class="planet-select">
-                    <option value="sun">Sun</option>
-                    <option value="mercury">Mercury</option>
-                    <option value="venus">Venus</option>
-                    <option value="earth">Earth</option>
-                    <option value="mars">Mars</option>
-                    <option value="jupiter">Jupiter</option>
-                    <option value="saturn">Saturn</option>
-                    <option value="uranus">Uranus</option>
-                    <option value="neptune">Neptune</option>
+                <label for="object2">Second Object:</label>
+                <select id="object2">
+                    <option value="Sun">Sun</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Mars" selected>Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
                 </select>
             </div>
             
@@ -143,7 +143,7 @@
 
     <script>
         const planetData = {
-            sun: { name: "Sun", diameter: 1392684000 },
+            sun: { name: "Sun", diameter: 1392684000000 },
             mercury: { name: "Mercury", distance: 57.9, diameter: 4879 },
             venus: { name: "Venus", distance: 108.2, diameter: 12104 },
             earth: { name: "Earth", distance: 149.6, diameter: 12756 },
@@ -162,7 +162,7 @@
             }
 
             // Calculate scale factor based on sun's diameter (real sun diameter in mm / model sun diameter in mm)
-            const realSunDiameterMM = 1392684000; // 1,392,684 km = 1,392,684,000 meters = 1,392,684,000,000 mm
+            const realSunDiameterMM = 1392684000000; // 1,392,684 km = 1,392,684,000,000 mm
             const modelSunDiameterMM = sunDiameterInches * 25.4;
             const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
 
@@ -192,8 +192,8 @@
         }
 
         function calculateDistance() {
-            const planet1 = document.getElementById('planet1').value;
-            const planet2 = document.getElementById('planet2').value;
+            const planet1 = document.getElementById('object1').value;
+            const planet2 = document.getElementById('object2').value;
             const sunDiameterInches = parseFloat(document.getElementById('sunDiameter').value);
 
             if (isNaN(sunDiameterInches) || sunDiameterInches <= 0) {
@@ -208,7 +208,7 @@
             }
 
             // Calculate scale factor based on sun's diameter (real sun diameter in mm / model sun diameter in mm)
-            const realSunDiameterMM = 1392684000;
+            const realSunDiameterMM = 1392684000000;
             const modelSunDiameterMM = sunDiameterInches * 25.4;
             const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
 
