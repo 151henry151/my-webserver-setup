@@ -183,15 +183,29 @@
             for (const [key, planet] of Object.entries(planetData)) {
                 if (key === 'sun') continue;
                 const planetDiameterMM = planet.diameter * 1e6;
-                const scaledDiameter = (planetDiameterMM / scaleFactor) / 25.4;
-                results += `<p><strong>${planet.name}:</strong> ${scaledDiameter.toFixed(3)} inches</p>`;
+                let scaledDiameter;
+                if (unit === 'mm') {
+                    scaledDiameter = planetDiameterMM / scaleFactor;
+                } else if (unit === 'feet') {
+                    scaledDiameter = (planetDiameterMM / scaleFactor) / 304.8;
+                } else {
+                    scaledDiameter = (planetDiameterMM / scaleFactor) / 25.4;
+                }
+                results += `<p><strong>${planet.name}:</strong> ${scaledDiameter.toFixed(3)} ${unit}</p>`;
             }
             results += '<h4>Distances from Sun:</h4>';
             for (const [key, planet] of Object.entries(planetData)) {
                 if (key === 'sun') continue;
                 const planetDistanceMM = planet.distance * 1e9;
-                const scaledDistanceInches = planetDistanceMM / scaleFactor / 25.4;
-                results += `<p><strong>${planet.name}:</strong> ${scaledDistanceInches.toFixed(2)} inches</p>`;
+                let scaledDistance;
+                if (unit === 'mm') {
+                    scaledDistance = planetDistanceMM / scaleFactor;
+                } else if (unit === 'feet') {
+                    scaledDistance = planetDistanceMM / scaleFactor / 304.8;
+                } else {
+                    scaledDistance = planetDistanceMM / scaleFactor / 25.4;
+                }
+                results += `<p><strong>${planet.name}:</strong> ${scaledDistance.toFixed(2)} ${unit}</p>`;
             }
             document.getElementById('scaleResults').innerHTML = results;
         }
@@ -218,8 +232,15 @@
             const scaleFactor = realSunDiameterMM / modelSunDiameterMM;
             const distance1MM = planet1 === 'sun' ? 0 : planetData[planet1].distance * 1e9;
             const distance2MM = planet2 === 'sun' ? 0 : planetData[planet2].distance * 1e9;
-            const scaledDistanceInches = Math.abs(distance1MM - distance2MM) / scaleFactor / 25.4;
-            document.getElementById('distanceResult').innerHTML = `<p>Distance between ${planetData[planet1].name} and ${planetData[planet2].name}: ${scaledDistanceInches.toFixed(2)} inches</p>`;
+            let scaledDistance;
+            if (unit === 'mm') {
+                scaledDistance = Math.abs(distance1MM - distance2MM) / scaleFactor;
+            } else if (unit === 'feet') {
+                scaledDistance = Math.abs(distance1MM - distance2MM) / scaleFactor / 304.8;
+            } else {
+                scaledDistance = Math.abs(distance1MM - distance2MM) / scaleFactor / 25.4;
+            }
+            document.getElementById('distanceResult').innerHTML = `<p>Distance between ${planetData[planet1].name} and ${planetData[planet2].name}: ${scaledDistance.toFixed(2)} ${unit}</p>`;
         }
     </script>
 </body>
