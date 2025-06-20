@@ -7,3 +7,6 @@
 [submodule "www/html/hromp.com/solar-system-calculator"]
 	path = www/html/hromp.com/solar-system-calculator
 	url = https://github.com/151henry151/solar-system-calculator.git
+[submodule "www/html/hromp.com/distance-time-calc"]
+	path = www/html/hromp.com/distance-time-calc
+	url = https://github.com/151henry151/distance-time-calc.git
