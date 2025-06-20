@@ -1,3 +1,9 @@
 [submodule "media-stack"]
 	path = media-stack
 	url = https://github.com/151henry151/media-stack.git
+[submodule "www/html/hromp.com/mercator"]
+	path = www/html/hromp.com/mercator
+	url = https://github.com/151henry151/mercator-day-night.git
+[submodule "www/html/hromp.com/solar-system-calculator"]
+	path = www/html/hromp.com/solar-system-calculator
+	url = https://github.com/151henry151/solar-system-calculator.git
