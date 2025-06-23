@@ -10,3 +10,9 @@
 [submodule "www/html/hromp.com/distance-time-calc"]
 	path = www/html/hromp.com/distance-time-calc
 	url = https://github.com/151henry151/distance-time-calc.git
+[submodule "www/html/hromp.com/weatherpage"]
+	path = www/html/hromp.com/weatherpage
+	url = https://github.com/151henry151/weatherpage.git
+[submodule "domains/com/hromp.com/public_html/weatherpage"]
+	path = domains/com/hromp.com/public_html/weatherpage
+	url = https://github.com/151henry151/weatherpage.git
