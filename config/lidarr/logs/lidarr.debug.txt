@@ -1,0 +1,244 @@
+2025-07-09 17:45:15.6|Debug|QualityParser|Trying to parse quality for 'Satsang - All. Right. Now. [2021] [FLAC]'
+2025-07-09 17:45:15.6|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.6|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:45:15.6|Debug|Parser|Parsing string 'Various Artists - Club Classics [2017] (CD - MP3 - 320)'
+2025-07-09 17:45:15.6|Debug|Parser|Album Parsed. Various Artists - Club Classics 
+2025-07-09 17:45:15.6|Debug|QualityParser|Trying to parse quality for 'Various Artists - Club Classics [2017] (CD - MP3 - 320)'
+2025-07-09 17:45:15.6|Debug|Parser|Quality parsed: MP3-320 v1
+2025-07-09 17:45:15.6|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Various Artists
+2025-07-09 17:45:15.6|Debug|Parser|Parsing string 'Duke Jordan Trio - Flight to Denmark (1973) [Jazz][flac][schon55'
+2025-07-09 17:45:15.6|Debug|Parser|Album Parsed. Duke Jordan Trio - Flight to Denmark 
+2025-07-09 17:45:15.6|Debug|QualityParser|Trying to parse quality for 'Duke Jordan Trio - Flight to Denmark (1973) [Jazz][flac][schon55'
+2025-07-09 17:45:15.6|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.6|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Duke Jordan Trio
+2025-07-09 17:45:15.6|Debug|Parser|Parsing string 'Utah Phillips and Ani Difranco - 1996 - The Past Didn't Go Anywhere'
+2025-07-09 17:45:15.6|Debug|Parser|Unable to parse Utah Phillips and Ani Difranco - 1996 - The Past Didn't Go Anywhere
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Utah Phillips and Ani Difranco - 1996 - The Past Didn't Go Anywhere
+2025-07-09 17:45:15.6|Debug|Parser|Parsing string '[2017] Satsang - Pyramid(s) (FLAC)'
+2025-07-09 17:45:15.6|Debug|Parser|Album Parsed. Satsang - Pyramid 
+2025-07-09 17:45:15.6|Debug|QualityParser|Trying to parse quality for '[2017] Satsang - Pyramid(s) (FLAC)'
+2025-07-09 17:45:15.6|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.6|Debug|Parser|Release Group parsed: 2017
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:45:15.6|Debug|Parser|Parsing string 'Cake Pop - 2021 - Cake Pop 2 {Mad Decent} [WEB FLAC]'
+2025-07-09 17:45:15.6|Debug|Parser|Album Parsed. Cake Pop - 2021 - Cake Pop 2 {Mad Decent 
+2025-07-09 17:45:15.6|Debug|QualityParser|Trying to parse quality for 'Cake Pop - 2021 - Cake Pop 2 {Mad Decent} [WEB FLAC]'
+2025-07-09 17:45:15.6|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.6|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Cake Pop
+2025-07-09 17:45:15.6|Debug|Parser|Parsing string 'Satsang - Flowers From The Fray [FLAC - WEB]'
+2025-07-09 17:45:15.6|Debug|Parser|Album Parsed. Satsang - Flowers From The Fray 
+2025-07-09 17:45:15.6|Debug|QualityParser|Trying to parse quality for 'Satsang - Flowers From The Fray [FLAC - WEB]'
+2025-07-09 17:45:15.6|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.6|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.6|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string '100 gecs - 10,000 gecs (2023) Mp3 320kbps [PMEDIA] ⭐️'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. 100 gecs - 10,000 gecs 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for '100 gecs - 10,000 gecs (2023) Mp3 320kbps [PMEDIA] ⭐️'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: MP3-320 v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for 100 gecs
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Eddie Jefferson - Body And Soul (1968) [OJCCD-396-2 - 1989] {CD - FLAC}'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Eddie Jefferson - Body And Soul 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Eddie Jefferson - Body And Soul (1968) [OJCCD-396-2 - 1989] {CD - FLAC}'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Eddie Jefferson
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Satsang - The Story Of You [V0]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Satsang - The Story Of You 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Satsang - The Story Of You [V0]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: Unknown v0
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: V0
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Grace Potter & Grace Potter and the Nocturnals - The Lion, The Beast, The Beat [2012] [Vinyl FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Grace Potter & Grace Potter and the Nocturnals - The Lion, The Beast, The Beat 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Grace Potter & Grace Potter and the Nocturnals - The Lion, The Beast, The Beat [2012] [Vinyl FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Grace Potter & Grace Potter and the Nocturnals
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Atlantic Crossing - Full and Away (2000) [CD MP3 V0] {Mountain Road Music}'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Atlantic Crossing - Full and Away 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Atlantic Crossing - Full and Away (2000) [CD MP3 V0] {Mountain Road Music}'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: Unknown v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Atlantic Crossing
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Ryo Fukui - Scenery (1976) [FLAC] {24bit 192kHz virgin vinyl rip}'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Ryo Fukui - Scenery 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Ryo Fukui - Scenery (1976) [FLAC] {24bit 192kHz virgin vinyl rip}'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC 24bit v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Ryo Fukui
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Various Artists - Reggae Vibes 2018, Vol. 2 (2018) [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Various Artists - Reggae Vibes 2018, Vol  2 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Various Artists - Reggae Vibes 2018, Vol. 2 (2018) [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Various Artists
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string '[2017] Satsang - Pyramid(s) (V0)'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Satsang - Pyramid 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for '[2017] Satsang - Pyramid(s) (V0)'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: Unknown v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 2017
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Various Artists - Reggae Vibes 2018 Vol. 1 (2018) [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Various Artists - Reggae Vibes 2018 Vol  1 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Various Artists - Reggae Vibes 2018 Vol. 1 (2018) [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Various Artists
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Deee Lite - World Clique - 1990 [FLAC] [RLG]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Deee Lite - World Clique 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Deee Lite - World Clique - 1990 [FLAC] [RLG]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: RLG
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Deee Lite
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Eddie Jefferson - Come Along With Me (1991) [CD Reissue - Flac] {OJCCD-613-2}'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Eddie Jefferson - Come Along With Me 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Eddie Jefferson - Come Along With Me (1991) [CD Reissue - Flac] {OJCCD-613-2}'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Eddie Jefferson
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Toshiko Akiyoshi Quintet - Toshiko At Top Of The Gate (1968) [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Toshiko Akiyoshi Quintet - Toshiko At Top Of The Gate 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Toshiko Akiyoshi Quintet - Toshiko At Top Of The Gate (1968) [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Toshiko Akiyoshi Quintet
+2025-07-09 17:45:15.7|Debug|Parser|Parsing string 'Satsang - The Story Of You [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Album Parsed. Satsang - The Story Of You 
+2025-07-09 17:45:15.7|Debug|QualityParser|Trying to parse quality for 'Satsang - The Story Of You [FLAC]'
+2025-07-09 17:45:15.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:45:15.7|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:45:15.7|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:45:15.8|Debug|Parser|Parsing string '100-gecs-hand-crushed-by-a-mallet-8-bit-0-cc-famitracker-2-a-03-mmc-5-vrc-6-cover'
+2025-07-09 17:45:15.8|Debug|Parser|Unable to parse 100-gecs-hand-crushed-by-a-mallet-8-bit-0-cc-famitracker-2-a-03-mmc-5-vrc-6-cover
+2025-07-09 17:45:15.8|Debug|ParsingService|Trying inexact artist match for 100-gecs-hand-crushed-by-a-mallet-8-bit-0-cc-famitracker-2-a-03-mmc-5-vrc-6-cover
+2025-07-09 17:45:15.8|Debug|Parser|Parsing string '2019 - Kulture'
+2025-07-09 17:45:15.8|Debug|Parser|Unable to parse 2019 - Kulture
+2025-07-09 17:45:15.8|Debug|ParsingService|Trying inexact artist match for 2019 - Kulture
+2025-07-09 17:46:45.7|Debug|Parser|Parsing string 'Satsang - All. Right. Now. [2021] [FLAC]'
+2025-07-09 17:46:45.7|Debug|Parser|Album Parsed. Satsang - All  Right  Now 
+2025-07-09 17:46:45.7|Debug|QualityParser|Trying to parse quality for 'Satsang - All. Right. Now. [2021] [FLAC]'
+2025-07-09 17:46:45.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.7|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:46:45.7|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:46:45.7|Debug|Parser|Parsing string 'Various Artists - Club Classics [2017] (CD - MP3 - 320)'
+2025-07-09 17:46:45.7|Debug|Parser|Album Parsed. Various Artists - Club Classics 
+2025-07-09 17:46:45.7|Debug|QualityParser|Trying to parse quality for 'Various Artists - Club Classics [2017] (CD - MP3 - 320)'
+2025-07-09 17:46:45.7|Debug|Parser|Quality parsed: MP3-320 v1
+2025-07-09 17:46:45.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.7|Debug|ParsingService|Trying inexact artist match for Various Artists
+2025-07-09 17:46:45.7|Debug|Parser|Parsing string 'Duke Jordan Trio - Flight to Denmark (1973) [Jazz][flac][schon55'
+2025-07-09 17:46:45.7|Debug|Parser|Album Parsed. Duke Jordan Trio - Flight to Denmark 
+2025-07-09 17:46:45.7|Debug|QualityParser|Trying to parse quality for 'Duke Jordan Trio - Flight to Denmark (1973) [Jazz][flac][schon55'
+2025-07-09 17:46:45.7|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.7|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.7|Debug|ParsingService|Trying inexact artist match for Duke Jordan Trio
+2025-07-09 17:46:45.7|Debug|Parser|Parsing string 'Utah Phillips and Ani Difranco - 1996 - The Past Didn't Go Anywhere'
+2025-07-09 17:46:45.7|Debug|Parser|Unable to parse Utah Phillips and Ani Difranco - 1996 - The Past Didn't Go Anywhere
+2025-07-09 17:46:45.7|Debug|ParsingService|Trying inexact artist match for Utah Phillips and Ani Difranco - 1996 - The Past Didn't Go Anywhere
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string '[2017] Satsang - Pyramid(s) (FLAC)'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Satsang - Pyramid 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for '[2017] Satsang - Pyramid(s) (FLAC)'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 2017
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Cake Pop - 2021 - Cake Pop 2 {Mad Decent} [WEB FLAC]'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Cake Pop - 2021 - Cake Pop 2 {Mad Decent 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Cake Pop - 2021 - Cake Pop 2 {Mad Decent} [WEB FLAC]'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Cake Pop
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Satsang - Flowers From The Fray [FLAC - WEB]'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Satsang - Flowers From The Fray 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Satsang - Flowers From The Fray [FLAC - WEB]'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string '100 gecs - 10,000 gecs (2023) Mp3 320kbps [PMEDIA] ⭐️'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. 100 gecs - 10,000 gecs 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for '100 gecs - 10,000 gecs (2023) Mp3 320kbps [PMEDIA] ⭐️'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: MP3-320 v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for 100 gecs
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Eddie Jefferson - Body And Soul (1968) [OJCCD-396-2 - 1989] {CD - FLAC}'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Eddie Jefferson - Body And Soul 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Eddie Jefferson - Body And Soul (1968) [OJCCD-396-2 - 1989] {CD - FLAC}'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Eddie Jefferson
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Satsang - The Story Of You [V0]'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Satsang - The Story Of You 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Satsang - The Story Of You [V0]'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: Unknown v0
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: V0
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Grace Potter & Grace Potter and the Nocturnals - The Lion, The Beast, The Beat [2012] [Vinyl FLAC]'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Grace Potter & Grace Potter and the Nocturnals - The Lion, The Beast, The Beat 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Grace Potter & Grace Potter and the Nocturnals - The Lion, The Beast, The Beat [2012] [Vinyl FLAC]'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Grace Potter & Grace Potter and the Nocturnals
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Atlantic Crossing - Full and Away (2000) [CD MP3 V0] {Mountain Road Music}'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Atlantic Crossing - Full and Away 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Atlantic Crossing - Full and Away (2000) [CD MP3 V0] {Mountain Road Music}'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: Unknown v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Atlantic Crossing
+2025-07-09 17:46:45.8|Debug|Parser|Parsing string 'Ryo Fukui - Scenery (1976) [FLAC] {24bit 192kHz virgin vinyl rip}'
+2025-07-09 17:46:45.8|Debug|Parser|Album Parsed. Ryo Fukui - Scenery 
+2025-07-09 17:46:45.8|Debug|QualityParser|Trying to parse quality for 'Ryo Fukui - Scenery (1976) [FLAC] {24bit 192kHz virgin vinyl rip}'
+2025-07-09 17:46:45.8|Debug|Parser|Quality parsed: FLAC 24bit v1
+2025-07-09 17:46:45.8|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.8|Debug|ParsingService|Trying inexact artist match for Ryo Fukui
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string 'Various Artists - Reggae Vibes 2018, Vol. 2 (2018) [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Various Artists - Reggae Vibes 2018, Vol  2 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for 'Various Artists - Reggae Vibes 2018, Vol. 2 (2018) [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Various Artists
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string '[2017] Satsang - Pyramid(s) (V0)'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Satsang - Pyramid 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for '[2017] Satsang - Pyramid(s) (V0)'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: Unknown v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: 2017
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string 'Various Artists - Reggae Vibes 2018 Vol. 1 (2018) [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Various Artists - Reggae Vibes 2018 Vol  1 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for 'Various Artists - Reggae Vibes 2018 Vol. 1 (2018) [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Various Artists
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string 'Deee Lite - World Clique - 1990 [FLAC] [RLG]'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Deee Lite - World Clique 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for 'Deee Lite - World Clique - 1990 [FLAC] [RLG]'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: RLG
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Deee Lite
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string 'Eddie Jefferson - Come Along With Me (1991) [CD Reissue - Flac] {OJCCD-613-2}'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Eddie Jefferson - Come Along With Me 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for 'Eddie Jefferson - Come Along With Me (1991) [CD Reissue - Flac] {OJCCD-613-2}'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: 
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Eddie Jefferson
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string 'Toshiko Akiyoshi Quintet - Toshiko At Top Of The Gate (1968) [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Toshiko Akiyoshi Quintet - Toshiko At Top Of The Gate 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for 'Toshiko Akiyoshi Quintet - Toshiko At Top Of The Gate (1968) [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Toshiko Akiyoshi Quintet
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string 'Satsang - The Story Of You [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Album Parsed. Satsang - The Story Of You 
+2025-07-09 17:46:45.9|Debug|QualityParser|Trying to parse quality for 'Satsang - The Story Of You [FLAC]'
+2025-07-09 17:46:45.9|Debug|Parser|Quality parsed: FLAC v1
+2025-07-09 17:46:45.9|Debug|Parser|Release Group parsed: FLAC
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for Satsang
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string '100-gecs-hand-crushed-by-a-mallet-8-bit-0-cc-famitracker-2-a-03-mmc-5-vrc-6-cover'
+2025-07-09 17:46:45.9|Debug|Parser|Unable to parse 100-gecs-hand-crushed-by-a-mallet-8-bit-0-cc-famitracker-2-a-03-mmc-5-vrc-6-cover
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for 100-gecs-hand-crushed-by-a-mallet-8-bit-0-cc-famitracker-2-a-03-mmc-5-vrc-6-cover
+2025-07-09 17:46:45.9|Debug|Parser|Parsing string '2019 - Kulture'
+2025-07-09 17:46:45.9|Debug|Parser|Unable to parse 2019 - Kulture
+2025-07-09 17:46:45.9|Debug|ParsingService|Trying inexact artist match for 2019 - Kulture
