@@ -16,3 +16,6 @@
 [submodule "domains/com/hromp.com/public_html/weatherpage"]
 	path = domains/com/hromp.com/public_html/weatherpage
 	url = https://github.com/151henry151/weatherpage.git
+[submodule "domains/com/hromp.com/public_html/pipedream"]
+	path = domains/com/hromp.com/public_html/pipedream
+	url = https://github.com/151henry151/pipedream.git
