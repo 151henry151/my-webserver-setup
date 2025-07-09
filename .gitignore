@@ -1,3 +1,22 @@
 # Ignore sensitive credentials file
 credentials.ini 
 .aider*
+
+# Ignore Lidarr database and runtime files
+config/lidarr/lidarr.db*
+config/lidarr/logs/
+config/lidarr/lidarr.pid
+config/lidarr/Backups/
+
+# Ignore other application runtime files
+*.pid
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.tmp
+
+# Ignore Docker runtime files
+.env
+.env.bak
+docker-compose.override.yml
