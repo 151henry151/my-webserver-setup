@@ -19,3 +19,6 @@
 [submodule "domains/com/hromp.com/public_html/pipedream"]
 	path = domains/com/hromp.com/public_html/pipedream
 	url = https://github.com/151henry151/pipedream.git
+[submodule "domains/com/hromp.com/public_html/ipa-chart"]
+	path = domains/com/hromp.com/public_html/ipa-chart
+	url = https://github.com/151henry151/ipa-chart.git
