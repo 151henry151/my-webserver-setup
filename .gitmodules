@@ -22,3 +22,9 @@
 [submodule "domains/com/hromp.com/public_html/ipa-chart"]
 	path = domains/com/hromp.com/public_html/ipa-chart
 	url = https://github.com/151henry151/ipa-chart.git
+[submodule "domains/com/chordispeak.com/public_html/chordispeak"]
+	path = domains/com/chordispeak.com/public_html/chordispeak
+	url = https://github.com/151henry151/chordispeak.git
+[submodule "doodlr/app"]
+	path = doodlr/app
+	url = https://github.com/151henry151/doodlr.git
