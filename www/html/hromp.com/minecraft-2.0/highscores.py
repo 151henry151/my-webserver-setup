@@ -177,7 +177,7 @@ def login():
     except Exception as e:
         return jsonify({'success': False, 'message': f'Login failed: {str(e)}'}), 500
 
-@app.route('/api/profile', methods=['GET'])
+@app.route('/api/profile', methods=['POST'])
 def get_profile():
     """Get user profile"""
     try:

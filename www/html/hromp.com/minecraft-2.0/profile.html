@@ -340,7 +340,7 @@
                 }
                 
                 const profile = data.profile;
-                selectedProfilePicture = profile.profile_picture || 'default.png';
+                selectedProfilePicture = profile.profile_picture || 'default.svg';
                 
                 let statsHTML = '';
                 if (profile.personal_best) {
@@ -567,6 +567,23 @@
                     showLoginForm();
                 }
             } else {
+                // Check if we have user data in the game's save data
+                const gameSave = localStorage.getItem('minecraftClickerSave');
+                if (gameSave) {
+                    try {
+                        const gameData = JSON.parse(gameSave);
+                        if (gameData.username && gameData.password) {
+                            currentUser = {
+                                username: gameData.username,
+                                password: gameData.password
+                            };
+                            loadProfile();
+                            return;
+                        }
+                    } catch (error) {
+                        console.error('Failed to parse game save:', error);
+                    }
+                }
                 showLoginForm();
             }
         });
