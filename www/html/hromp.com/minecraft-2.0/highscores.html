@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>High Scores - Minecraft Clicker</title>
+    <link rel="stylesheet" href="style.css?v=3.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₿</text></svg>">
+    <style>
+        .highscores-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .highscores-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .highscores-header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .highscores-header p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        .back-button:hover {
+            background: #2980b9;
+        }
+        
+        .highscores-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highscores-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .highscores-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .highscores-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .rank {
+            font-weight: bold;
+            text-align: center;
+            width: 60px;
+        }
+        
+        .rank-1 { color: #f39c12; }
+        .rank-2 { color: #95a5a6; }
+        .rank-3 { color: #e67e22; }
+        
+        .username-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profile-picture {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ecf0f1;
+        }
+        
+        .username {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .score-value {
+            font-weight: 600;
+            color: #27ae60;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #e74c3c;
+        }
+        
+        .refresh-button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 20px auto;
+            display: block;
+            transition: background 0.3s;
+        }
+        
+        .refresh-button:hover {
+            background: #229954;
+        }
+        
+        .no-scores {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .stat-item {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .stat-label {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Game</button>
+        
+        <div class="highscores-container">
+            <div class="highscores-header">
+                <h1>🏆 High Scores</h1>
+                <p>See how you rank against other miners!</p>
+            </div>
+            
+            <button class="refresh-button" onclick="loadHighScores()">🔄 Refresh Scores</button>
+            
+            <div id="highscoresContent">
+                <div class="loading">Loading high scores...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatNumber(num) {
+            if (num < 1000) return num.toString();
+            if (num < 1000000) return (num / 1000).toFixed(1) + 'K';
+            if (num < 1000000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num < 1000000000000) return (num / 1000000000).toFixed(1) + 'B';
+            if (num < 1000000000000000) return (num / 1000000000000).toFixed(1) + 'T';
+            if (num < 1000000000000000000) return (num / 1000000000000000).toFixed(1) + 'Q';
+            return (num / 1000000000000000000).toFixed(1) + 'Qt';
+        }
+
+        function formatTime(seconds) {
+            if (seconds < 60) return `${seconds}s`;
+            if (seconds < 3600) return `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            return `${hours}h ${minutes}m`;
+        }
+
+        async function loadHighScores() {
+            const contentDiv = document.getElementById('highscoresContent');
+            contentDiv.innerHTML = '<div class="loading">Loading high scores...</div>';
+            
+            try {
+                const response = await fetch('/api/highscores');
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load high scores');
+                }
+                
+                const scores = data.scores;
+                
+                if (scores.length === 0) {
+                    contentDiv.innerHTML = '<div class="no-scores">No high scores yet! Be the first to set a record!</div>';
+                    return;
+                }
+                
+                let tableHTML = `
+                    <table class="highscores-table">
+                        <thead>
+                            <tr>
+                                <th class="rank">Rank</th>
+                                <th>Player</th>
+                                <th>Total Mined</th>
+                                <th>Current Blocks</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                
+                scores.forEach((score, index) => {
+                    const rank = index + 1;
+                    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
+                    const rankClass = rank <= 3 ? `rank-${rank}` : '';
+                    
+                    tableHTML += `
+                        <tr>
+                            <td class="rank ${rankClass}">${medal}</td>
+                            <td>
+                                <div class="username-cell">
+                                    <img src="${score.profilePicture}" alt="Profile" class="profile-picture" onerror="this.src='default.svg'">
+                                    <span class="username">${score.username}</span>
+                                </div>
+                            </td>
+                            <td class="score-value">${formatNumber(score.totalMined)}</td>
+                            <td>${formatNumber(score.blocks)}</td>
+                            <td>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Clicks:</span> ${formatNumber(score.totalClicks)}
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tools:</span> ${score.upgradesOwned}
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Time:</span> ${formatTime(score.playTime)}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                tableHTML += `
+                        </tbody>
+                    </table>
+                `;
+                
+                contentDiv.innerHTML = tableHTML;
+                
+            } catch (error) {
+                console.error('Failed to load high scores:', error);
+                contentDiv.innerHTML = `
+                    <div class="error">
+                        Failed to load high scores: ${error.message}
+                        <br><br>
+                        <button class="refresh-button" onclick="loadHighScores()">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Load high scores when page loads
+        document.addEventListener('DOMContentLoaded', loadHighScores);
+    </script>
+</body>
+</html> 
