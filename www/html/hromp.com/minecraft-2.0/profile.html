@@ -95,6 +95,18 @@
             border-color: #e74c3c;
         }
         
+        .form-group input[readonly] {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .form-group input[readonly]:focus {
+            border-color: #dee2e6;
+            box-shadow: none;
+        }
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -217,6 +229,37 @@
         .login-form {
             max-width: 300px;
             margin: 0 auto;
+        }
+        
+        .file-upload-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .file-upload-input {
+            display: none;
+        }
+        
+        .file-upload-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        .file-upload-label:hover {
+            background: #2980b9;
+        }
+        
+        .upload-info {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 8px;
         }
     </style>
 </head>
@@ -378,11 +421,20 @@
                             <img src="${selectedProfilePicture}" alt="Profile" class="profile-picture" onerror="this.src='default.svg'">
                             <div class="profile-picture-options">
                                 <img src="default.svg" alt="Default" class="picture-option ${selectedProfilePicture === 'default.svg' ? 'selected' : ''}" onclick="selectPicture('default.svg')">
-                                <img src="woodpickaxe.png" alt="Wooden Pickaxe" class="picture-option ${selectedProfilePicture === 'woodpickaxe.png' ? 'selected' : ''}" onclick="selectPicture('woodpickaxe.png')">
-                                <img src="stonepickaxe.png" alt="Stone Pickaxe" class="picture-option ${selectedProfilePicture === 'stonepickaxe.png' ? 'selected' : ''}" onclick="selectPicture('stonepickaxe.png')">
-                                <img src="ironpickaxe.png" alt="Iron Pickaxe" class="picture-option ${selectedProfilePicture === 'ironpickaxe.png' ? 'selected' : ''}" onclick="selectPicture('ironpickaxe.png')">
-                                <img src="diamondpickaxe.png" alt="Diamond Pickaxe" class="picture-option ${selectedProfilePicture === 'diamondpickaxe.png' ? 'selected' : ''}" onclick="selectPicture('diamondpickaxe.png')">
-                                <img src="netheritepickaxe.png" alt="Netherite Pickaxe" class="picture-option ${selectedProfilePicture === 'netheritepickaxe.png' ? 'selected' : ''}" onclick="selectPicture('netheritepickaxe.png')">
+                                <img src="steve.svg" alt="Steve" class="picture-option ${selectedProfilePicture === 'steve.svg' ? 'selected' : ''}" onclick="selectPicture('steve.svg')">
+                                <img src="alex.svg" alt="Alex" class="picture-option ${selectedProfilePicture === 'alex.svg' ? 'selected' : ''}" onclick="selectPicture('alex.svg')">
+                                <img src="creeper.svg" alt="Creeper" class="picture-option ${selectedProfilePicture === 'creeper.svg' ? 'selected' : ''}" onclick="selectPicture('creeper.svg')">
+                                <img src="cat.svg" alt="Cat" class="picture-option ${selectedProfilePicture === 'cat.svg' ? 'selected' : ''}" onclick="selectPicture('cat.svg')">
+                                <img src="wolf.svg" alt="Wolf" class="picture-option ${selectedProfilePicture === 'wolf.svg' ? 'selected' : ''}" onclick="selectPicture('wolf.svg')">
+                                <img src="enderman.svg" alt="Enderman" class="picture-option ${selectedProfilePicture === 'enderman.svg' ? 'selected' : ''}" onclick="selectPicture('enderman.svg')">
+                                <img src="zombie.svg" alt="Zombie" class="picture-option ${selectedProfilePicture === 'zombie.svg' ? 'selected' : ''}" onclick="selectPicture('zombie.svg')">
+                                <img src="skeleton.svg" alt="Skeleton" class="picture-option ${selectedProfilePicture === 'skeleton.svg' ? 'selected' : ''}" onclick="selectPicture('skeleton.svg')">
+                                <img src="spider.svg" alt="Spider" class="picture-option ${selectedProfilePicture === 'spider.svg' ? 'selected' : ''}" onclick="selectPicture('spider.svg')">
+                            </div>
+                            <div class="file-upload-section">
+                                <input type="file" id="profilePictureUpload" class="file-upload-input" accept="image/*" onchange="handleFileUpload(event)">
+                                <label for="profilePictureUpload" class="file-upload-label">📁 Upload Custom Picture</label>
+                                <div class="upload-info">Supported formats: JPG, PNG, GIF (max 2MB)</div>
                             </div>
                         </div>
                     </div>
@@ -553,6 +605,43 @@
         function logout() {
             currentUser = null;
             showLoginForm();
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Check file size (2MB limit)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('File size must be less than 2MB');
+                return;
+            }
+            
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                selectedProfilePicture = imageData;
+                
+                // Update the main profile picture display
+                const profilePic = document.querySelector('.profile-picture');
+                if (profilePic) {
+                    profilePic.src = imageData;
+                }
+                
+                // Remove selected state from all default options
+                document.querySelectorAll('.picture-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                alert('Custom profile picture uploaded! Click "Save Changes" to apply.');
+            };
+            reader.readAsDataURL(file);
         }
 
         // Check if user is logged in from localStorage
