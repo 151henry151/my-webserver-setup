@@ -214,19 +214,23 @@
             return `${hours}h ${minutes}m`;
         }
 
-        async function loadHighScores() {
+                async function loadHighScores() {
             const contentDiv = document.getElementById('highscoresContent');
             contentDiv.innerHTML = '<div class="loading">Loading high scores...</div>';
             
             try {
+                console.log('Fetching high scores...');
                 const response = await fetch('/minecraft-2.0/api/highscores/live');
+                console.log('Response status:', response.status);
                 const data = await response.json();
+                console.log('Received data:', data);
                 
                 if (!data.success) {
                     throw new Error(data.message || 'Failed to load high scores');
                 }
                 
                 const scores = data.scores;
+                console.log('Processing scores:', scores.length);
                 
                 if (scores.length === 0) {
                     contentDiv.innerHTML = '<div class="no-scores">No high scores yet! Be the first to set a record!</div>';
@@ -252,12 +256,23 @@
                     const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
                     const rankClass = rank <= 3 ? `rank-${rank}` : '';
                     
+                    // Debug logging
+                    console.log('Processing score:', score.username, 'Profile picture:', score.profilePicture);
+                    console.log('Profile picture type:', typeof score.profilePicture);
+                    console.log('Is base64:', score.profilePicture && score.profilePicture.startsWith('data:'));
+                    
+                    const imgSrc = score.profilePicture && score.profilePicture.startsWith('data:') 
+                        ? score.profilePicture 
+                        : '/minecraft-2.0/assets/profilepics/' + score.profilePicture;
+                    
+                    console.log('Final img src:', imgSrc);
+                    
                     tableHTML += `
                         <tr>
                             <td class="rank ${rankClass}">${medal}</td>
                             <td>
                                 <div class="username-cell">
-                                    <img src="${score.profilePicture.startsWith('data:') ? score.profilePicture : '/minecraft-2.0/assets/profilepics/' + score.profilePicture}" alt="Profile" class="profile-picture" onerror="this.src='/minecraft-2.0/assets/profilepics/default.svg'">
+                                    <img src="${imgSrc}" alt="Profile" class="profile-picture" onerror="this.src='/minecraft-2.0/assets/profilepics/default.svg'">
                                     <span class="username" style="cursor: pointer; text-decoration: underline; color: #3498db;" onclick="viewProfile('${score.username}')">${score.username}</span>
                                 </div>
                             </td>
@@ -267,7 +282,7 @@
                                 <div class="stats-grid">
                                     <div class="stat-item">
                                         <span class="stat-label">Clicks:</span> ${formatNumber(score.totalClicks)}
-                                    </div>
+                                        </div>
                                     <div class="stat-item">
                                         <span class="stat-label">Tools:</span> ${score.upgradesOwned}
                                     </div>
@@ -286,7 +301,9 @@
                     <div class="last-updated">Last updated: ${new Date().toLocaleTimeString()}</div>
                 `;
                 
+                console.log('Setting innerHTML...');
                 contentDiv.innerHTML = tableHTML;
+                console.log('High scores loaded successfully');
                 
             } catch (error) {
                 console.error('Failed to load high scores:', error);
@@ -318,8 +335,20 @@
             }
         }
         
+        // Global error handler
+        window.addEventListener('error', (event) => {
+            console.error('Global error:', event.error);
+            console.error('Error details:', {
+                message: event.message,
+                filename: event.filename,
+                lineno: event.lineno,
+                colno: event.colno
+            });
+        });
+        
         // Start auto-refresh when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, starting high scores...');
             loadHighScores();
             startAutoRefresh();
         });
