@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Profile Settings - Minecraft Clicker</title>
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="css/style.css?v=3.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₿</text></svg>">
     <style>
@@ -336,7 +336,7 @@
             }
             
             try {
-                const response = await fetch('/api/login', {
+                const response = await fetch('/minecraft-2.0/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -368,7 +368,7 @@
             contentDiv.innerHTML = '<div class="loading">Loading profile...</div>';
             
             try {
-                const response = await fetch('/api/profile', {
+                const response = await fetch('/minecraft-2.0/api/profile', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -416,20 +416,27 @@
                     </div>
                     
                     <div class="profile-section">
+                        <h2>🏆 Achievements</h2>
+                        <div id="achievementsContent">
+                            <p>Loading achievements...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
                         <h2>🖼️ Profile Picture</h2>
                         <div class="profile-picture-section">
-                            <img src="${selectedProfilePicture}" alt="Profile" class="profile-picture" onerror="this.src='default.svg'">
+                            <img src="assets/profilepics/${selectedProfilePicture}" alt="Profile" class="profile-picture" onerror="this.src='assets/profilepics/default.svg'">
                             <div class="profile-picture-options">
-                                <img src="default.svg" alt="Default" class="picture-option ${selectedProfilePicture === 'default.svg' ? 'selected' : ''}" onclick="selectPicture('default.svg')">
-                                <img src="steve.svg" alt="Steve" class="picture-option ${selectedProfilePicture === 'steve.svg' ? 'selected' : ''}" onclick="selectPicture('steve.svg')">
-                                <img src="alex.svg" alt="Alex" class="picture-option ${selectedProfilePicture === 'alex.svg' ? 'selected' : ''}" onclick="selectPicture('alex.svg')">
-                                <img src="creeper.svg" alt="Creeper" class="picture-option ${selectedProfilePicture === 'creeper.svg' ? 'selected' : ''}" onclick="selectPicture('creeper.svg')">
-                                <img src="cat.svg" alt="Cat" class="picture-option ${selectedProfilePicture === 'cat.svg' ? 'selected' : ''}" onclick="selectPicture('cat.svg')">
-                                <img src="wolf.svg" alt="Wolf" class="picture-option ${selectedProfilePicture === 'wolf.svg' ? 'selected' : ''}" onclick="selectPicture('wolf.svg')">
-                                <img src="enderman.svg" alt="Enderman" class="picture-option ${selectedProfilePicture === 'enderman.svg' ? 'selected' : ''}" onclick="selectPicture('enderman.svg')">
-                                <img src="zombie.svg" alt="Zombie" class="picture-option ${selectedProfilePicture === 'zombie.svg' ? 'selected' : ''}" onclick="selectPicture('zombie.svg')">
-                                <img src="skeleton.svg" alt="Skeleton" class="picture-option ${selectedProfilePicture === 'skeleton.svg' ? 'selected' : ''}" onclick="selectPicture('skeleton.svg')">
-                                <img src="spider.svg" alt="Spider" class="picture-option ${selectedProfilePicture === 'spider.svg' ? 'selected' : ''}" onclick="selectPicture('spider.svg')">
+                                <img src="assets/profilepics/default.svg" alt="Default" class="picture-option ${selectedProfilePicture === 'default.svg' ? 'selected' : ''}" onclick="selectPicture('default.svg')">
+                                <img src="assets/profilepics/steve.svg" alt="Steve" class="picture-option ${selectedProfilePicture === 'steve.svg' ? 'selected' : ''}" onclick="selectPicture('steve.svg')">
+                                <img src="assets/profilepics/alex.svg" alt="Alex" class="picture-option ${selectedProfilePicture === 'alex.svg' ? 'selected' : ''}" onclick="selectPicture('alex.svg')">
+                                <img src="assets/profilepics/creeper.svg" alt="Creeper" class="picture-option ${selectedProfilePicture === 'creeper.svg' ? 'selected' : ''}" onclick="selectPicture('creeper.svg')">
+                                <img src="assets/profilepics/cat.svg" alt="Cat" class="picture-option ${selectedProfilePicture === 'cat.svg' ? 'selected' : ''}" onclick="selectPicture('cat.svg')">
+                                <img src="assets/profilepics/wolf.svg" alt="Wolf" class="picture-option ${selectedProfilePicture === 'wolf.svg' ? 'selected' : ''}" onclick="selectPicture('wolf.svg')">
+                                <img src="assets/profilepics/enderman.svg" alt="Enderman" class="picture-option ${selectedProfilePicture === 'enderman.svg' ? 'selected' : ''}" onclick="selectPicture('enderman.svg')">
+                                <img src="assets/profilepics/zombie.svg" alt="Zombie" class="picture-option ${selectedProfilePicture === 'zombie.svg' ? 'selected' : ''}" onclick="selectPicture('zombie.svg')">
+                                <img src="assets/profilepics/skeleton.svg" alt="Skeleton" class="picture-option ${selectedProfilePicture === 'skeleton.svg' ? 'selected' : ''}" onclick="selectPicture('skeleton.svg')">
+                                <img src="assets/profilepics/spider.svg" alt="Spider" class="picture-option ${selectedProfilePicture === 'spider.svg' ? 'selected' : ''}" onclick="selectPicture('spider.svg')">
                             </div>
                             <div class="file-upload-section">
                                 <input type="file" id="profilePictureUpload" class="file-upload-input" accept="image/*" onchange="handleFileUpload(event)">
@@ -483,6 +490,9 @@
                     </div>
                 `;
                 
+                // Load achievements after profile content is set
+                loadAchievements();
+                
             } catch (error) {
                 console.error('Failed to load profile:', error);
                 contentDiv.innerHTML = `
@@ -521,7 +531,7 @@
             const email = document.getElementById('email').value.trim();
             
             try {
-                const response = await fetch('/api/profile', {
+                const response = await fetch('/minecraft-2.0/api/profile', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -571,7 +581,7 @@
             }
             
             try {
-                const response = await fetch('/api/change-password', {
+                const response = await fetch('/minecraft-2.0/api/change-password', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -605,6 +615,54 @@
         function logout() {
             currentUser = null;
             showLoginForm();
+        }
+
+        function loadAchievements() {
+            const achievementsContent = document.getElementById('achievementsContent');
+            if (!achievementsContent) return;
+            
+            const globalAchievements = JSON.parse(localStorage.getItem('globalAchievements') || '{}');
+            const userAchievements = globalAchievements[currentUser?.username] || [];
+            
+            // Get achievements from centralized configuration
+            const allAchievements = AchievementsHelper.getAchievementsForDisplay();
+            
+            const unlockedCount = userAchievements.length;
+            const totalCount = allAchievements.length;
+            const progressPercentage = (unlockedCount / totalCount) * 100;
+            
+            let achievementsHTML = `
+                <div style="margin-bottom: 20px; padding: 15px; background: #ecf0f1; border-radius: 8px;">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <strong>Achievement Progress: ${unlockedCount}/${totalCount} (${progressPercentage.toFixed(1)}%)</strong>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: #bdc3c7; border-radius: 4px; overflow: hidden;">
+                        <div style="height: 100%; background: linear-gradient(90deg, #3498db, #2ecc71); width: ${progressPercentage}%; transition: width 0.3s;"></div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px;">
+            `;
+            
+            allAchievements.forEach(achievement => {
+                const isUnlocked = userAchievements.includes(achievement.id);
+                const achievementClass = isUnlocked ? 'unlocked' : 'locked';
+                const statusText = isUnlocked ? '✅ Unlocked' : '🔒 Locked';
+                const backgroundColor = isUnlocked ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#f1f2f6';
+                const textColor = isUnlocked ? 'white' : '#95a5a6';
+                const borderColor = isUnlocked ? '#667eea' : '#bdc3c7';
+                
+                achievementsHTML += `
+                    <div style="background: ${backgroundColor}; color: ${textColor}; border: 2px solid ${borderColor}; border-radius: 8px; padding: 15px; transition: all 0.3s;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">${achievement.name}</div>
+                        <div style="font-size: 14px; margin-bottom: 10px;">${achievement.description}</div>
+                        <div style="font-size: 12px; opacity: 0.8;">Reward: ${achievement.reward.toLocaleString()} blocks</div>
+                        <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">${statusText}</div>
+                    </div>
+                `;
+            });
+            
+            achievementsHTML += '</div>';
+            achievementsContent.innerHTML = achievementsHTML;
         }
 
         function handleFileUpload(event) {
@@ -677,5 +735,6 @@
             }
         });
     </script>
+    <script type="module" src="js/achievements/index.js"></script>
 </body>
 </html> 

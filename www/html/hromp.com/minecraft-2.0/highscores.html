@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>High Scores - Minecraft Clicker</title>
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="css/style.css?v=3.1">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₿</text></svg>">
     <style>
@@ -110,10 +110,24 @@
             color: #27ae60;
         }
         
+        .current-blocks {
+            font-weight: 600;
+            color: #27ae60;
+        }
+        
+        .last-updated {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
         .loading {
             text-align: center;
             padding: 40px;
             color: #7f8c8d;
+            font-size: 18px;
         }
         
         .error {
@@ -170,7 +184,7 @@
         <div class="highscores-container">
             <div class="highscores-header">
                 <h1>🏆 High Scores</h1>
-                <p>See how you rank against other miners!</p>
+                <p>See how you rank against other miners! Scores update automatically every 10 seconds.</p>
             </div>
             
             <button class="refresh-button" onclick="loadHighScores()">🔄 Refresh Scores</button>
@@ -205,7 +219,7 @@
             contentDiv.innerHTML = '<div class="loading">Loading high scores...</div>';
             
             try {
-                const response = await fetch('/api/highscores');
+                const response = await fetch('/minecraft-2.0/api/highscores/live');
                 const data = await response.json();
                 
                 if (!data.success) {
@@ -243,12 +257,12 @@
                             <td class="rank ${rankClass}">${medal}</td>
                             <td>
                                 <div class="username-cell">
-                                    <img src="${score.profilePicture}" alt="Profile" class="profile-picture" onerror="this.src='default.svg'">
-                                    <span class="username">${score.username}</span>
+                                    <img src="assets/profilepics/${score.profilePicture}" alt="Profile" class="profile-picture" onerror="this.src='assets/profilepics/default.svg'">
+                                    <span class="username" style="cursor: pointer; text-decoration: underline; color: #3498db;" onclick="viewProfile('${score.username}')">${score.username}</span>
                                 </div>
                             </td>
                             <td class="score-value">${formatNumber(score.totalMined)}</td>
-                            <td>${formatNumber(score.blocks)}</td>
+                            <td class="current-blocks">${formatNumber(score.currentBlocks || score.blocks)}</td>
                             <td>
                                 <div class="stats-grid">
                                     <div class="stat-item">
@@ -269,6 +283,7 @@
                 tableHTML += `
                         </tbody>
                     </table>
+                    <div class="last-updated">Last updated: ${new Date().toLocaleTimeString()}</div>
                 `;
                 
                 contentDiv.innerHTML = tableHTML;
@@ -285,8 +300,38 @@
             }
         }
 
-        // Load high scores when page loads
-        document.addEventListener('DOMContentLoaded', loadHighScores);
+        function viewProfile(username) {
+            window.location.href = `public-profile.html?username=${encodeURIComponent(username)}`;
+        }
+        
+        // Auto-refresh high scores every 10 seconds
+        let autoRefreshInterval;
+        
+        function startAutoRefresh() {
+            autoRefreshInterval = setInterval(loadHighScores, 10000); // 10 seconds
+        }
+        
+        function stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+            }
+        }
+        
+        // Start auto-refresh when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHighScores();
+            startAutoRefresh();
+        });
+        
+        // Stop auto-refresh when page is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoRefresh();
+            } else {
+                startAutoRefresh();
+            }
+        });
     </script>
 </body>
 </html> 
