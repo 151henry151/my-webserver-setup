@@ -257,7 +257,7 @@
                             <td class="rank ${rankClass}">${medal}</td>
                             <td>
                                 <div class="username-cell">
-                                    <img src="/minecraft-2.0/assets/profilepics/${score.profilePicture}" alt="Profile" class="profile-picture" onerror="this.src='/minecraft-2.0/assets/profilepics/default.svg'">
+                                    <img src="${score.profilePicture.startsWith('data:') ? score.profilePicture : '/minecraft-2.0/assets/profilepics/' + score.profilePicture}" alt="Profile" class="profile-picture" onerror="this.src='/minecraft-2.0/assets/profilepics/default.svg'">
                                     <span class="username" style="cursor: pointer; text-decoration: underline; color: #3498db;" onclick="viewProfile('${score.username}')">${score.username}</span>
                                 </div>
                             </td>
