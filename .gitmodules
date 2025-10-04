@@ -1,0 +1,3 @@
+[submodule "minecraft-clicker"]
+	path = minecraft-clicker
+	url = https://github.com/151lucas151/minecraft-clicker.git
