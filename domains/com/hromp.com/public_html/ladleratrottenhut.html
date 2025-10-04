@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladle Rat Rotten Hut</title>
+    <style>
+        body { font-family: 'Fira Mono', 'Consolas', 'Liberation Mono', 'Menlo', 'Monaco', 'Fixedsys', monospace; background: #f9f9f9; color: #222; margin: 0; padding: 2em; }
+        .poem { max-width: 700px; margin: 2em auto; background: #fff; padding: 2em 2.5em; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        h1 { text-align: center; margin-bottom: 1.5em; font-size: 2.2em; letter-spacing: 0.04em; transition: color 0.3s; cursor: pointer; }
+        .stanza-pair {
+            position: relative;
+            margin: 1.5em 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .stanza-main, .stanza-hover {
+            display: block;
+            transition: opacity 0.5s;
+            font-size: 1.15em;
+            line-height: 1.7;
+            white-space: pre-line;
+            margin: 0;
+            position: absolute;
+            left: 0; right: 0; top: 0;
+        }
+        .stanza-main { z-index: 1; }
+        .stanza-hover { z-index: 2; opacity: 0; pointer-events: none; }
+        .stanza-pair:hover .stanza-main { opacity: 0; }
+        .stanza-pair:hover .stanza-hover { opacity: 1; pointer-events: auto; }
+    </style>
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.stanza-pair').forEach(function(pair) {
+            var main = pair.querySelector('.stanza-main');
+            var hover = pair.querySelector('.stanza-hover');
+            main.style.opacity = 1;
+            hover.style.opacity = 1;
+            main.style.position = 'static';
+            hover.style.position = 'static';
+            var mainHeight = main.offsetHeight;
+            var hoverHeight = hover.offsetHeight;
+            var maxHeight = Math.max(mainHeight, hoverHeight);
+            pair.style.minHeight = maxHeight + 'px';
+            main.style.position = '';
+            hover.style.position = '';
+            main.style.opacity = '';
+            hover.style.opacity = '';
+        });
+
+        var heading = document.getElementById('poem-title');
+        heading.addEventListener('mouseenter', function() {
+            heading.textContent = 'Little Red Riding Hood';
+        });
+        heading.addEventListener('mouseleave', function() {
+            heading.textContent = 'Ladle Rat Rotten Hut';
+        });
+        heading.addEventListener('click', function() {
+            window.location.href = '/redridinghood';
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="poem">
+        <h1 id="poem-title">Ladle Rat Rotten Hut</h1>
+        <div class="stanza-pair">
+            <p class="stanza-main">Wants pawn term, dare worsted ladle gull hoe lift wetter murder inner ladle cordage, honor itch offer lodge dock florist. Disk ladle gull orphan worry ladle cluck wetter putty ladle rat hut, an fur disk raisin pimple colder Ladle Rat Rotten Hut.</p>
+            <p class="stanza-hover">Once upon a time, there was a little girl who lived with her mother in a little cottage, on the edge of a large dark forest. This little girl often wore a little cloak with a pretty little red hood, and for this reason people called her Little Red Riding Hood.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Wan moaning, Rat Rotten Hut's murder colder inset, "Ladle Rat Rotten Hut, heresy ladle basking winsome burden barter an shirker cockles. Tick disk ladle basking tutor cordage offer groin-murder hoe lifts honor udder site offer florist. Shaker lake! Dun stopper torque wet strainers! An yonder nor sorghum-stenches, dun stopper torque wet strainers!"</p>
+            <p class="stanza-hover">One morning, Red Riding Hood's mother called to her and said, 'Little Red Riding Hood, here is a little basket with some bread and butter and sugar cookies. Take this little basket to the cottage of your grandmother who lives on the other side of the forest. Shake a leg! Don't stop along the way! And under no circumstances, don't stop to talk with strangers!'</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">"Hoe-cake, murder," resplendent Ladle Rat Rotten Hut, an tickle ladle basking an stuttered oft. Honor wrote tutor cordage offer groin-murder, Ladle Rat Rotten Hut mitten anomalous woof. "Wail, wail, wail!" set disk wicket woof, "Evanescent Ladle Rat Rotten Hut! Wares are putty ladle gull goring wizard ladle basking?"</p>
+            <p class="stanza-hover">'Okay, mother,' replied Little Red Riding Hood, and took the little basket and started off. On her way to the cottage of her grandmother, Little Red Riding Hood met an enormous wolf. 'Well, well, well!' said this wicked wolf, 'if it isn't Little Red Riding Hood! Where's our pretty little girl going with her little basket?'</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">"Armor goring tumor groin-murder's," reprisal ladle gull. "Grammar's seeking bet. Armor ticking arson burden barter an shirker cockles."</p>
+            <p class="stanza-hover">'I am going to my grandmother's,' replied the little girl. 'Grandma's sick in bed. I am taking her some bread and butter and sugar cookies.'</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">"O hoe! Heifer blessing woke," setter wicket woof, butter taught tomb shelf, "Oil tickle shirt court tutor cordage offer groin-murder. Oil ketchup wetter letter, an den - O bore!"</p>
+            <p class="stanza-hover">'Oh ho! Have a pleasant walk,' said the wicked wolf, but he thought to himself, 'I'll take a short cut to the cottage of her grandmother. I'll catch up with her later, and then - oh boy!'</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Soda wicket woof tucker shirt court, an whinney retched a cordage offer groin-murder, picked inner widow, an sore debtor pore oil worming worse lion inner bet. Inner flesh, disk abdominal woof lipped honor bet an at a rope. Den knee poled honor groin-murder's nut cup an gnat-gun, any curdled dope inner bet.</p>
+            <p class="stanza-hover">So the wicked wolf took a short cut, and when he reached the cottage of her grandmother, peeked in her window, and saw that the poor old woman was lying in her bed. In a flash, this abominable wolf leaped on her bed and ate her up. Then he pulled on her grandmother's nightcap and nightgown, and he curled up in her bed.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Inner ladle wile, Ladle Rat Rotten Hut a raft attar cordage, an ranker dough belle. "Comb ink, sweat hard," setter wicket woof, disgracing is verse. Ladle Rat Rotten Hut entity bet rum an stud buyer groin-murder's bet.</p>
+            <p class="stanza-hover">In a little while, Little Red Riding Hood arrived at her cottage, and rang her doorbell. 'Come in, sweetheart,' said the wicked wolf, disguising his voice. Little Red Riding Hood entered the bedroom and stood by her grandmother's bed.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">"O Grammar!" crater ladle gull, "Wood bag icer gut! A nervous sausage bag ice!" "Battered lucky chew whiff, doling," whiskered disk ratchet woof, wetter wicket small. "O Grammar, water bag noise! A nervous sore suture anomolous prognosis!" "Battered small your whiff," insert a woof, ants mouse worse waddling. "O Grammar, water bag mousy gut! A nervous sore suture bag mouse!"</p>
+            <p class="stanza-hover">'Oh Grandma!' cried the little girl, 'What big eyes you've got! I've never seen such big eyes!' 'Better to see you with, darling,' whispered this rascal wolf, with a wicked smile. 'Oh Grandma, what a big nose! I never saw such an enormous nose!' 'Better to smell you with,' said the wolf, and his mouth was watering. 'Oh Grandma, what a big mouth you've got! I never saw such a big mouth!'</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Daze worry on-forger-nut gulls lest warts. Oil offer sodden, thoroughing offer carvers an sprinkling otter bet, disk curl and bloat-thursday woof ceased pore Ladle Rat Rotten Hut an garbled erupt.</p>
+            <p class="stanza-hover">These were our unfortunate girl's last words. All of a sudden, throwing off the covers and springing out of bed, this cruel and bloodthirsty wolf seized poor Little Red Riding Hood and gobbled her up.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Mural: Yonder nor sorghum stenches shut ladle gulls stopper torque wet strainers.</p>
+            <p class="stanza-hover">Moral: Under no circumstances should little girls stop to talk with strangers.</p>
+        </div>
+    </div>
+</body>
+</html> 

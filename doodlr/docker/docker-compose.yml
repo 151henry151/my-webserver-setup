@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  doodlr-backend:
+    build:
+      context: /home/henry/webserver/doodlr
+      dockerfile: docker/Dockerfile.backend
+    container_name: doodlr-backend
+    restart: unless-stopped
+    working_dir: /app/backend
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - /home/henry/webserver/doodlr/data/doodlr.db:/app/backend/doodlr.db
+    ports:
+      - "127.0.0.1:18000:8000"
+    networks:
+      - doodlr-net
+
+  doodlr-frontend-static:
+    build:
+      context: /home/henry/webserver/doodlr
+      dockerfile: docker/Dockerfile.frontend.static
+      args:
+        EXPO_PUBLIC_API_URL: "https://hromp.com/doodlr/api"
+    container_name: doodlr-frontend-static
+    restart: "no"
+    networks:
+      - doodlr-net
+
+networks:
+  doodlr-net:
+    driver: bridge 

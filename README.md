@@ -1,156 +1,92 @@
-# Minecraft Clicker - Enhanced Version
+# My Webserver Setup
 
-A fun incremental mining game where you click to mine blocks and upgrade your mining operation!
+This repository contains the complete configuration and setup for my production webserver infrastructure.
 
-## 🎮 Game Features
+## 🏗️ Infrastructure Overview
 
-- **Incremental Mining**: Click to mine blocks and earn passive income
-- **25+ Upgrades**: From wooden pickaxes to reality-bending mining tools
-- **Achievement System**: Unlock achievements for various milestones
-- **User Accounts**: Secure registration and login system
-- **High Score Tracking**: Compete with other players globally
-- **Profile Management**: Customize your profile with pictures and settings
-- **Persistent Progress**: Save your game progress locally and in the cloud
+This setup includes:
+- **Nginx** - Reverse proxy and web server
+- **SSL/TLS** - Let's Encrypt certificates for all domains
+- **Media Stack** - Jellyfin, Sonarr, Radarr, Lidarr, Prowlarr, qBittorrent
+- **Monitoring** - Grafana, Prometheus, Node Exporter
+- **Web Applications** - Various custom web apps and services
+- **Domain Management** - Multiple domain configurations
 
-## 🆕 Recent Improvements
+## 📁 Directory Structure
 
-### User Account System
-- **Secure Registration**: Create accounts with username, password, and email
-- **Profile Pictures**: Choose from various mining tools as your profile picture
-- **Profile Settings Page**: Manage your account, change passwords, update email
-- **Session Management**: Stay logged in across browser sessions
+```
+├── nginx/                 # Nginx configuration files
+├── domains/              # Domain-specific configurations
+├── media-stack/          # Media server stack (Jellyfin, *arr apps)
+├── monitoring/           # Monitoring and observability
+├── web-phone/           # Web phone application
+├── web-phone-deploy/    # Web phone deployment files
+├── plane/               # Plane project management
+├── doodlr/              # Doodlr drawing application
+├── www/                 # Static web content
+└── config/              # System configuration files
+```
 
-### High Score System
-- **Dedicated High Scores Page**: Beautiful table view of top players
-- **Global Leaderboard**: See how you rank against other miners
-- **Personal Statistics**: Track your best scores and achievements
-- **Real-time Updates**: Refresh scores to see latest rankings
+## 🔧 Services
 
-### Enhanced UI/UX
-- **Modern Design**: Clean, responsive interface with smooth animations
-- **Navigation**: Easy access to high scores and profile settings
-- **Notifications**: Real-time feedback for all actions
-- **Mobile Responsive**: Works great on all device sizes
+### Web Server
+- **Nginx** - Main web server and reverse proxy
+- **SSL Certificates** - Automated Let's Encrypt certificates
+- **Multiple Domains** - hromp.com, chordispeak.com, minecraftclick.com, etc.
 
-## 🚀 Getting Started
+### Media Stack
+- **Jellyfin** - Media server
+- **Sonarr** - TV show management
+- **Radarr** - Movie management  
+- **Lidarr** - Music management
+- **Prowlarr** - Indexer management
+- **qBittorrent** - Torrent client
 
-1. **Visit the Game**: Navigate to the game URL
-2. **Create Account**: Click "Register" to create your account
-3. **Start Mining**: Click the grass block to begin mining
-4. **Buy Upgrades**: Purchase mining tools to increase your production
-5. **Save Progress**: Your progress is automatically saved
-6. **Compete**: Save high scores and compete with other players
+### Monitoring
+- **Grafana** - Dashboards and visualization
+- **Prometheus** - Metrics collection
+- **Node Exporter** - System metrics
 
-## 🛠️ Technical Features
+### Applications
+- **Web Phone** - VoIP web application
+- **Plane** - Project management
+- **Doodlr** - Collaborative drawing
+- **Minecraft Clicker** - Web game (submodule)
 
-### Backend API (Flask)
-- **User Authentication**: Secure password hashing with PBKDF2
-- **Database**: SQLite with proper schema for users and high scores
-- **RESTful API**: Clean endpoints for all game functionality
-- **CORS Support**: Cross-origin requests enabled for web integration
+## 🚀 Deployment
 
-### Frontend (Vanilla JavaScript)
-- **No Dependencies**: Pure JavaScript, HTML, and CSS
-- **Local Storage**: Offline progress saving
-- **Real-time Updates**: Live game state management
-- **Responsive Design**: Works on desktop and mobile
+This setup is designed for production deployment with:
+- Automated SSL certificate renewal
+- Docker containerization for services
+- Nginx reverse proxy configuration
+- Domain-based routing
+- Security headers and best practices
 
-## 📊 Game Statistics
+## 🔒 Security
 
-The game tracks various statistics:
-- Total blocks mined
-- Total clicks performed
-- Number of upgrades owned
-- Play time
-- Personal best scores
-- Achievement progress
+- SSL/TLS encryption for all services
+- Security headers (HSTS, CSP, etc.)
+- Authentication for sensitive services
+- Firewall configuration
+- Regular security updates
 
-## 🏆 High Score Categories
+## 📊 Monitoring
 
-High scores are ranked by:
-1. **Total Blocks Mined**: Your lifetime mining achievement
-2. **Current Blocks**: Your current block balance
-3. **Upgrades Owned**: Number of mining tools purchased
-4. **Play Time**: Time spent in the game
+- System metrics via Prometheus
+- Service health monitoring
+- Resource usage tracking
+- Alerting for critical issues
 
-## 🔧 API Endpoints
+## 🛠️ Maintenance
 
-- `POST /api/register` - Create new account
-- `POST /api/login` - User authentication
-- `GET /api/profile` - Get user profile
-- `PUT /api/profile` - Update profile settings
-- `POST /api/change-password` - Change password
-- `GET /api/highscores` - Get global leaderboard
-- `POST /api/highscores` - Save high score
-- `GET /api/health` - API health check
+- Automated certificate renewal
+- Regular backups
+- Log rotation
+- Service monitoring
+- Security updates
 
-## 🎯 Game Strategy
+## 📝 Notes
 
-1. **Early Game**: Focus on click upgrades to increase manual mining
-2. **Mid Game**: Invest in passive income upgrades for steady progress
-3. **Late Game**: Purchase expensive upgrades for exponential growth
-4. **End Game**: Aim for achievements and compete for high scores
+This is a production server setup. All configurations are actively used and should be maintained carefully.
 
-## 🔒 Security Features
-
-- **Password Hashing**: PBKDF2 with salt for secure password storage
-- **Input Validation**: All user inputs are validated and sanitized
-- **SQL Injection Protection**: Parameterized queries prevent attacks
-- **XSS Protection**: Content Security Policy headers
-
-## 📱 Browser Compatibility
-
-- Chrome/Chromium (recommended)
-- Firefox
-- Safari
-- Edge
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 🎨 Customization
-
-### Profile Pictures
-Choose from various mining tools:
-- Default avatar
-- Wooden pickaxe
-- Stone pickaxe
-- Iron pickaxe
-- Diamond pickaxe
-- Netherite pickaxe
-
-### Game Settings
-- Adjust notification preferences
-- Customize UI themes
-- Set personal goals and targets
-
-## 🐛 Troubleshooting
-
-### Common Issues
-1. **Can't Save High Score**: Make sure you're logged in
-2. **Progress Not Saving**: Check browser local storage permissions
-3. **API Errors**: Verify the backend server is running
-4. **Login Issues**: Ensure username/password are correct
-
-### Support
-If you encounter any issues:
-1. Check the browser console for error messages
-2. Verify your internet connection
-3. Try refreshing the page
-4. Clear browser cache if needed
-
-## 🚀 Future Enhancements
-
-Planned features for future updates:
-- **Email Password Reset**: Recover accounts via email
-- **Social Features**: Friend lists and private competitions
-- **More Achievements**: Additional milestones and rewards
-- **Seasonal Events**: Special limited-time content
-- **Advanced Statistics**: Detailed analytics and charts
-- **Mobile App**: Native mobile application
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
----
-
-**Happy Mining! ⛏️** 
+For development or testing, use appropriate staging environments.

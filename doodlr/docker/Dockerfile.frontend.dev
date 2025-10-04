@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1
+FROM node:20-alpine
+WORKDIR /app/frontend
+
+# Install deps
+COPY app/frontend/package.json app/frontend/package-lock.json* ./
+RUN npm ci || npm install --legacy-peer-deps
+
+# Copy source
+COPY app/frontend/ ./
+
+ENV EXPO_NO_TELEMETRY=1
+ENV CI=1
+
+# Allow configuring API URL at runtime
+ENV EXPO_PUBLIC_API_URL="https://hromp.com/doodlr/api"
+
+EXPOSE 19007
+
+CMD ["npx", "expo", "start", "--web", "--port", "19007", "--host", "lan"] 

@@ -1,0 +1,25 @@
+[Unit]
+Description=ChordiSpeak Flask Application
+After=network.target
+
+[Service]
+Type=simple
+User=henry
+Group=henry
+WorkingDirectory=/home/henry/webserver/domains/com/chordispeak.com/public_html/chordispeak
+Environment=PATH=/home/henry/webserver/domains/com/chordispeak.com/public_html/chordispeak/venv/bin
+ExecStart=/home/henry/webserver/domains/com/chordispeak.com/public_html/chordispeak/venv/bin/python run.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Environment variables for GPU optimization
+Environment=CUDA_VISIBLE_DEVICES=0
+Environment=PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128
+Environment=CUDA_LAUNCH_BLOCKING=0
+Environment=TORCH_CUDNN_V8_API_ENABLED=1
+Environment=COQUI_TOS_AGREED=1
+
+[Install]
+WantedBy=multi-user.target 

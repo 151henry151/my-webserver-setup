@@ -1,0 +1,19 @@
+# syntax=docker/dockerfile:1
+FROM node:20-alpine as build
+WORKDIR /app/frontend
+
+# Copy full source first so dependency graph reflects package.json changes
+COPY app/frontend/ ./
+
+# Install deps (allow legacy peer deps to avoid conflicts)
+RUN npm install --legacy-peer-deps
+
+# Build static export (output inside project directory)
+ARG EXPO_PUBLIC_API_URL
+ENV EXPO_PUBLIC_API_URL=${EXPO_PUBLIC_API_URL}
+RUN npx --yes expo export -p web --output-dir dist
+
+# Output stage (for extracting artifacts)
+FROM alpine:3.20 AS artifact
+WORKDIR /out
+COPY --from=build /app/frontend/dist/ ./ 

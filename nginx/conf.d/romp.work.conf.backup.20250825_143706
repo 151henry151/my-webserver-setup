@@ -1,0 +1,74 @@
+# romp.work server block
+server {
+    listen 80;
+    listen [::]:80;
+    server_name romp.work www.romp.work;
+    
+    access_log /var/log/nginx/romp.work.access.log combined;
+    error_log /var/log/nginx/romp.work.error.log debug;
+    
+    # ACME challenge location
+    location /.well-known/acme-challenge/ {
+        alias /home/henry/webserver/domains/work/romp.work/public_html/.well-known/acme-challenge/;
+    }
+
+    # Redirect everything else to HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 192.64.87.248:443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name romp.work www.romp.work;
+
+    # SSL certificates (will need to be obtained via certbot)
+    # ssl_certificate /etc/letsencrypt/live/romp.work/fullchain.pem;
+    # ssl_certificate_key /etc/letsencrypt/live/romp.work/privkey.pem;
+    
+    # Increase max upload size to 150MB
+    client_max_body_size 150M;
+
+    root /home/henry/webserver/domains/work/romp.work/public_html;
+    index index.html;
+
+    access_log /var/log/nginx/romp.work.access.log combined;
+    error_log /var/log/nginx/romp.work.error.log debug;
+
+    # Modern SSL configuration
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    
+    # SSL session settings
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:SSL:50m;
+    ssl_session_tickets off;
+
+    # Security headers
+    add_header Strict-Transport-Security "max-age=63072000" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;" always;
+
+    # ACME challenge location
+    location /.well-known/acme-challenge/ {
+        alias /home/henry/webserver/domains/work/romp.work/public_html/.well-known/acme-challenge/;
+    }
+
+    # Static files
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Assets from shared directory
+    location /assets/ {
+        alias /home/henry/webserver/assets/;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+} 

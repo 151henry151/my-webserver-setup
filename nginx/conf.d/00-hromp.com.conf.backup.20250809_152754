@@ -1,0 +1,234 @@
+# Default catch-all server block for unmatched SSL requests
+server {
+    listen 192.64.87.248:443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_name _;
+    
+    # Use hromp.com certificate for the default block
+    ssl_certificate /etc/letsencrypt/live/hromp.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/hromp.com/privkey.pem;
+    
+    # Close connection for unmatched hosts
+    return 444;
+}
+
+server {
+    if ($host = www.hromp.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = hromp.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+    server_name hromp.com www.hromp.com;
+    
+    access_log /var/log/nginx/hromp.com.access.log combined;
+    error_log /var/log/nginx/hromp.com.error.log debug;
+    
+    # ACME challenge location
+    location /.well-known/acme-challenge/ {
+        alias /home/henry/webserver/domains/com/hromp.com/public_html/.well-known/acme-challenge/;
+    }
+
+    # Redirect everything else to HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+
+
+
+
+}
+
+# hromp.com server block
+server {
+    listen 192.64.87.248:443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name hromp.com www.hromp.com;
+
+    # Explicitly set certificates for this server block
+    ssl_certificate /etc/letsencrypt/live/hromp.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/hromp.com/privkey.pem; # managed by Certbot
+    
+    # Increase max upload size to 150MB
+    client_max_body_size 150M;
+
+    root /home/henry/webserver/domains/com/hromp.com/public_html;
+    index index.html;
+
+    access_log /var/log/nginx/hromp.com.access.log combined;
+    error_log /var/log/nginx/hromp.com.error.log debug;
+
+    # Modern SSL configuration
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    
+    # SSL session settings
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:SSL:50m;
+    ssl_session_tickets off;
+
+    # Security headers
+    add_header Strict-Transport-Security "max-age=63072000" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https://cdn.star.nesdis.noaa.gov https://api.weather.gov https://graphical.weather.gov; connect-src 'self' https://api.weather.gov https://api.zippopotam.us https://api.opencagedata.com https://graphical.weather.gov;" always;
+
+    # Redirect /invoice to /invoice/
+    location = /invoice {
+        return 301 $scheme://$host/invoice/;
+    }
+
+    # Invoice Generator Application
+    location /invoice/ {
+        proxy_pass http://172.20.0.2:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header SCRIPT_NAME /invoice;
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+        
+        # WebSocket support (if needed)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+    # Handle static files for the invoice app
+    location /invoice/static/ {
+        alias /home/henry/invoice-gen/static/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        try_files $uri =404;
+    }
+
+    # Handle uploaded files
+    location /invoice/uploads/ {
+        alias /home/henry/invoice-gen/uploads/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        try_files $uri =404;
+    }
+
+    # Mercator Day/Night Map (submodule)
+    location /mercator/ {
+        alias /home/henry/webserver/www/html/hromp.com/mercator/;
+        index index.html;
+        try_files $uri $uri/ /mercator/index.html;
+    }
+
+    # Solar System Calculator (submodule)
+    location /solar-system-calculator/ {
+        alias /home/henry/webserver/www/html/hromp.com/solar-system-calculator/;
+        index index.html;
+        try_files $uri $uri/ /solar-system-calculator/index.html;
+    }
+
+    # Weather Page (submodule)
+    location /weatherpage/ {
+        alias /home/henry/webserver/domains/com/hromp.com/public_html/weatherpage/;
+        index index.html;
+        try_files $uri $uri/ /weatherpage/index.html;
+    }
+
+    # Distance-Time Calculator (submodule)
+    location /distance-time-calc/ {
+        alias /home/henry/webserver/www/html/hromp.com/distance-time-calc/;
+        index index.html;
+        try_files $uri $uri/ /distance-time-calc/index.html;
+    }
+
+    # Pipedream Website (submodule)
+    location /pipedream/ {
+        alias /home/henry/webserver/domains/com/hromp.com/public_html/pipedream/;
+        index index.html;
+        try_files $uri $uri/ /pipedream/index.html;
+    }
+
+    # IPA Chart Website (submodule)
+    # Redirect /ipa to /ipa/
+    location = /ipa {
+        return 301 $scheme://$host/ipa/;
+    }
+
+    location /ipa/ {
+        alias /home/henry/webserver/domains/com/hromp.com/public_html/ipa-chart/;
+        index index.html;
+        try_files $uri $uri/ /ipa/index.html;
+    }
+
+    # IPA API proxy to Flask backend
+    location /ipa/api/ {
+        proxy_pass http://127.0.0.1:5000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 30;
+        proxy_connect_timeout 30;
+        proxy_send_timeout 30;
+    }
+
+    # Doodlr frontend
+    location /doodlr/ {
+        proxy_pass http://127.0.0.1:18080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 60;
+        proxy_connect_timeout 60;
+        proxy_send_timeout 60;
+    }
+
+    # Doodlr API
+    location /doodlr/api/ {
+        proxy_pass http://127.0.0.1:18000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+    }
+
+    # Proxy for NOAA forecast GIFs to bypass CORS/OpaqueResponseBlocking
+    location /weatherpage/proxy-gif/ {
+        proxy_pass https://graphical.weather.gov/images/conus/;
+        proxy_set_header Host graphical.weather.gov;
+        proxy_set_header Accept-Encoding "";
+        proxy_hide_header Access-Control-Allow-Origin;
+        add_header Access-Control-Allow-Origin *;
+        add_header Cache-Control "public, max-age=600";
+        proxy_ssl_verify off;
+    }
+
+    # Default location
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # Error pages
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+
+}

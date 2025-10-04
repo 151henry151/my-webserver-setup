@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickaxe Animation Test</title>
+    <link rel="stylesheet" href="css/style.css?v=2.9">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            text-align: center;
+        }
+        .test-button {
+            padding: 10px 20px;
+            margin: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        
+        .test-container h3 {
+            color: #4CAF50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid rgba(76, 175, 80, 0.3);
+            padding-bottom: 5px;
+        }
+        
+        .test-container h3:first-of-type {
+            margin-top: 0;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Pickaxe Animation Test</h1>
+        <p>Click the buttons below to test different pickaxe animations:</p>
+        
+        <div class="click-area">
+            <button id="bitcoinButton" class="grass-block-button">
+                <div class="grass-block">
+                    <img src="assets/grassblock.jpeg" alt="Minecraft Grass Block" class="grass-block-image" style="display: block; width: 100%; height: 100%;">
+                </div>
+                <div class="mining-tool" id="miningTool">
+                    <div class="pickaxe wooden-pickaxe" id="woodenPickaxe">
+                        <img src="assets/tools/woodpickaxe.png" alt="Wooden Pickaxe" class="pickaxe-image">
+                    </div>
+                    <div class="pickaxe stone-pickaxe" id="stonePickaxe">
+                        <img src="assets/tools/stonepickaxe.png" alt="Stone Pickaxe" class="pickaxe-image">
+                    </div>
+                    <div class="pickaxe iron-pickaxe" id="ironPickaxe">
+                        <img src="assets/tools/ironpickaxe.png" alt="Iron Pickaxe" class="pickaxe-image">
+                    </div>
+                    <div class="pickaxe diamond-pickaxe" id="diamondPickaxe">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Diamond Pickaxe" class="pickaxe-image">
+                    </div>
+                    <div class="pickaxe netherite-pickaxe" id="netheritePickaxe">
+                        <img src="assets/tools/netheritepickaxe.png" alt="Netherite Pickaxe" class="pickaxe-image">
+                    </div>
+                    <div class="mining-robot" id="miningRobot">
+                        <img src="assets/tools/stonepickaxe.png" alt="Mining Robot" class="pickaxe-image">
+                    </div>
+                    <div class="automated-mine" id="automatedMine">
+                        <img src="assets/tools/stonepickaxe.png" alt="Automated Mine" class="pickaxe-image">
+                    </div>
+                    <div class="quantum-miner" id="quantumMiner">
+                        <img src="assets/tools/stonepickaxe.png" alt="Quantum Miner" class="pickaxe-image">
+                    </div>
+                    <!-- Advanced Tier - 3 pickaxes each -->
+                    <div class="pickaxe-army" id="pickaxeArmy">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Pickaxe Army" class="pickaxe-image">
+                    </div>
+                    <div class="pickaxe-army pickaxe-army-2" id="pickaxeArmy2">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Pickaxe Army 2" class="pickaxe-image">
+                    </div>
+                    <div class="pickaxe-army pickaxe-army-3" id="pickaxeArmy3">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Pickaxe Army 3" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="diamond-legion" id="diamondLegion">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Diamond Legion" class="pickaxe-image">
+                    </div>
+                    <div class="diamond-legion diamond-legion-2" id="diamondLegion2">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Diamond Legion 2" class="pickaxe-image">
+                    </div>
+                    <div class="diamond-legion diamond-legion-3" id="diamondLegion3">
+                        <img src="assets/tools/diamondpickaxe.png" alt="Diamond Legion 3" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="netherite-swarm" id="netheriteSwarm">
+                        <img src="assets/tools/netheritepickaxe.png" alt="Netherite Swarm" class="pickaxe-image">
+                    </div>
+                    <div class="netherite-swarm netherite-swarm-2" id="netheriteSwarm2">
+                        <img src="assets/tools/netheritepickaxe.png" alt="Netherite Swarm 2" class="pickaxe-image">
+                    </div>
+                    <div class="netherite-swarm netherite-swarm-3" id="netheriteSwarm3">
+                        <img src="assets/tools/netheritepickaxe.png" alt="Netherite Swarm 3" class="pickaxe-image">
+                    </div>
+                    <!-- Expert Tier - 4 pickaxes each -->
+                    <div class="robot-legion" id="robotLegion">
+                        <img src="assets/tools/stonepickaxe.png" alt="Robot Legion" class="pickaxe-image">
+                    </div>
+                    <div class="robot-legion robot-legion-2" id="robotLegion2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Robot Legion 2" class="pickaxe-image">
+                    </div>
+                    <div class="robot-legion robot-legion-3" id="robotLegion3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Robot Legion 3" class="pickaxe-image">
+                    </div>
+                    <div class="robot-legion robot-legion-4" id="robotLegion4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Robot Legion 4" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="mine-empire" id="mineEmpire">
+                        <img src="assets/tools/stonepickaxe.png" alt="Mine Empire" class="pickaxe-image">
+                    </div>
+                    <div class="mine-empire mine-empire-2" id="mineEmpire2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Mine Empire 2" class="pickaxe-image">
+                    </div>
+                    <div class="mine-empire mine-empire-3" id="mineEmpire3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Mine Empire 3" class="pickaxe-image">
+                    </div>
+                    <div class="mine-empire mine-empire-4" id="mineEmpire4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Mine Empire 4" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="quantum-legion" id="quantumLegion">
+                        <img src="assets/tools/stonepickaxe.png" alt="Quantum Legion" class="pickaxe-image">
+                    </div>
+                    <div class="quantum-legion quantum-legion-2" id="quantumLegion2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Quantum Legion 2" class="pickaxe-image">
+                    </div>
+                    <div class="quantum-legion quantum-legion-3" id="quantumLegion3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Quantum Legion 3" class="pickaxe-image">
+                    </div>
+                    <div class="quantum-legion quantum-legion-4" id="quantumLegion4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Quantum Legion 4" class="pickaxe-image">
+                    </div>
+                    <!-- Master Tier - 5 pickaxes each -->
+                    <div class="time-machine" id="timeMachine">
+                        <img src="assets/tools/stonepickaxe.png" alt="Time Machine" class="pickaxe-image">
+                    </div>
+                    <div class="time-machine time-machine-2" id="timeMachine2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Time Machine 2" class="pickaxe-image">
+                    </div>
+                    <div class="time-machine time-machine-3" id="timeMachine3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Time Machine 3" class="pickaxe-image">
+                    </div>
+                    <div class="time-machine time-machine-4" id="timeMachine4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Time Machine 4" class="pickaxe-image">
+                    </div>
+                    <div class="time-machine time-machine-5" id="timeMachine5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Time Machine 5" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="reality-bender" id="realityBender">
+                        <img src="assets/tools/stonepickaxe.png" alt="Reality Bender" class="pickaxe-image">
+                    </div>
+                    <div class="reality-bender reality-bender-2" id="realityBender2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Reality Bender 2" class="pickaxe-image">
+                    </div>
+                    <div class="reality-bender reality-bender-3" id="realityBender3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Reality Bender 3" class="pickaxe-image">
+                    </div>
+                    <div class="reality-bender reality-bender-4" id="realityBender4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Reality Bender 4" class="pickaxe-image">
+                    </div>
+                    <div class="reality-bender reality-bender-5" id="realityBender5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Reality Bender 5" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="dimension-breaker" id="dimensionBreaker">
+                        <img src="assets/tools/stonepickaxe.png" alt="Dimension Breaker" class="pickaxe-image">
+                    </div>
+                    <div class="dimension-breaker dimension-breaker-2" id="dimensionBreaker2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Dimension Breaker 2" class="pickaxe-image">
+                    </div>
+                    <div class="dimension-breaker dimension-breaker-3" id="dimensionBreaker3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Dimension Breaker 3" class="pickaxe-image">
+                    </div>
+                    <div class="dimension-breaker dimension-breaker-4" id="dimensionBreaker4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Dimension Breaker 4" class="pickaxe-image">
+                    </div>
+                    <div class="dimension-breaker dimension-breaker-5" id="dimensionBreaker5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Dimension Breaker 5" class="pickaxe-image">
+                    </div>
+                    <!-- Ultra Tier - 6 pickaxes each -->
+                    <div class="cosmic-miner" id="cosmicMiner">
+                        <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner" class="pickaxe-image">
+                    </div>
+                    <div class="cosmic-miner cosmic-miner-2" id="cosmicMiner2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner 2" class="pickaxe-image">
+                    </div>
+                    <div class="cosmic-miner cosmic-miner-3" id="cosmicMiner3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner 3" class="pickaxe-image">
+                    </div>
+                    <div class="cosmic-miner cosmic-miner-4" id="cosmicMiner4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner 4" class="pickaxe-image">
+                    </div>
+                    <div class="cosmic-miner cosmic-miner-5" id="cosmicMiner5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner 5" class="pickaxe-image">
+                    </div>
+                    <div class="cosmic-miner cosmic-miner-6" id="cosmicMiner6">
+                        <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner 6" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="galaxy-crusher" id="galaxyCrusher">
+                        <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher" class="pickaxe-image">
+                    </div>
+                    <div class="galaxy-crusher galaxy-crusher-2" id="galaxyCrusher2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher 2" class="pickaxe-image">
+                    </div>
+                    <div class="galaxy-crusher galaxy-crusher-3" id="galaxyCrusher3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher 3" class="pickaxe-image">
+                    </div>
+                    <div class="galaxy-crusher galaxy-crusher-4" id="galaxyCrusher4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher 4" class="pickaxe-image">
+                    </div>
+                    <div class="galaxy-crusher galaxy-crusher-5" id="galaxyCrusher5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher 5" class="pickaxe-image">
+                    </div>
+                    <div class="galaxy-crusher galaxy-crusher-6" id="galaxyCrusher6">
+                        <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher 6" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="universe-shaper" id="universeShaper">
+                        <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper" class="pickaxe-image">
+                    </div>
+                    <div class="universe-shaper universe-shaper-2" id="universeShaper2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper 2" class="pickaxe-image">
+                    </div>
+                    <div class="universe-shaper universe-shaper-3" id="universeShaper3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper 3" class="pickaxe-image">
+                    </div>
+                    <div class="universe-shaper universe-shaper-4" id="universeShaper4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper 4" class="pickaxe-image">
+                    </div>
+                    <div class="universe-shaper universe-shaper-5" id="universeShaper5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper 5" class="pickaxe-image">
+                    </div>
+                    <div class="universe-shaper universe-shaper-6" id="universeShaper6">
+                        <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper 6" class="pickaxe-image">
+                    </div>
+                    
+                    <div class="multiverse-harvester" id="multiverseHarvester">
+                        <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester" class="pickaxe-image">
+                    </div>
+                    <div class="multiverse-harvester multiverse-harvester-2" id="multiverseHarvester2">
+                        <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester 2" class="pickaxe-image">
+                    </div>
+                    <div class="multiverse-harvester multiverse-harvester-3" id="multiverseHarvester3">
+                        <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester 3" class="pickaxe-image">
+                    </div>
+                    <div class="multiverse-harvester multiverse-harvester-4" id="multiverseHarvester4">
+                        <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester 4" class="pickaxe-image">
+                    </div>
+                    <div class="multiverse-harvester multiverse-harvester-5" id="multiverseHarvester5">
+                        <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester 5" class="pickaxe-image">
+                    </div>
+                    <div class="multiverse-harvester multiverse-harvester-6" id="multiverseHarvester6">
+                        <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester 6" class="pickaxe-image">
+                    </div>
+                </div>
+                <span class="click-text">Test Area</span>
+            </button>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <h3>Basic Tier Animations:</h3>
+            <button class="test-button" onclick="testTool('woodenPickaxe')">Test Wooden Pickaxe</button>
+            <button class="test-button" onclick="testTool('stonePickaxe')">Test Stone Pickaxe</button>
+            <button class="test-button" onclick="testTool('ironPickaxe')">Test Iron Pickaxe</button>
+            <button class="test-button" onclick="testTool('diamondPickaxe')">Test Diamond Pickaxe</button>
+            <button class="test-button" onclick="testTool('netheritePickaxe')">Test Netherite Pickaxe</button>
+            
+            <h3>Intermediate Tier Animations:</h3>
+            <button class="test-button" onclick="testTool('miningRobot')">Test Mining Robot</button>
+            <button class="test-button" onclick="testTool('automatedMine')">Test Automated Mine</button>
+            <button class="test-button" onclick="testTool('quantumMiner')">Test Quantum Miner</button>
+            
+            <h3>Advanced Tier Animations:</h3>
+            <button class="test-button" onclick="testTool('pickaxeArmy')">Test Pickaxe Army</button>
+            <button class="test-button" onclick="testTool('diamondLegion')">Test Diamond Legion</button>
+            <button class="test-button" onclick="testTool('netheriteSwarm')">Test Netherite Swarm</button>
+            
+            <h3>Expert Tier Animations:</h3>
+            <button class="test-button" onclick="testTool('robotLegion')">Test Robot Legion</button>
+            <button class="test-button" onclick="testTool('mineEmpire')">Test Mine Empire</button>
+            <button class="test-button" onclick="testTool('quantumLegion')">Test Quantum Legion</button>
+            
+            <h3>Master Tier Animations:</h3>
+            <button class="test-button" onclick="testTool('timeMachine')">Test Time Machine</button>
+            <button class="test-button" onclick="testTool('realityBender')">Test Reality Bender</button>
+            <button class="test-button" onclick="testTool('dimensionBreaker')">Test Dimension Breaker</button>
+            
+            <h3>Ultra Tier Animations:</h3>
+            <button class="test-button" onclick="testTool('cosmicMiner')">Test Cosmic Miner</button>
+            <button class="test-button" onclick="testTool('galaxyCrusher')">Test Galaxy Crusher</button>
+            <button class="test-button" onclick="testTool('universeShaper')">Test Universe Shaper</button>
+            <button class="test-button" onclick="testTool('multiverseHarvester')">Test Multiverse Harvester</button>
+            
+            <h3>Utility:</h3>
+            <button class="test-button" onclick="clearAllTools()">Clear All Tools</button>
+            <button class="test-button" onclick="showAllTools()">Show All Tools (Debug)</button>
+        </div>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+            <h3>Debug Info:</h3>
+            <div id="debugInfo">No tools active</div>
+        </div>
+    </div>
+
+    <script>
+        function testTool(toolId) {
+            // Clear all tools first
+            clearAllTools();
+            
+            // Define tool groups for multiple pickaxes
+            const toolGroups = {
+                // Advanced Tier - 3 pickaxes each
+                'pickaxeArmy': ['pickaxeArmy', 'pickaxeArmy2', 'pickaxeArmy3'],
+                'diamondLegion': ['diamondLegion', 'diamondLegion2', 'diamondLegion3'],
+                'netheriteSwarm': ['netheriteSwarm', 'netheriteSwarm2', 'netheriteSwarm3'],
+                
+                // Expert Tier - 4 pickaxes each
+                'robotLegion': ['robotLegion', 'robotLegion2', 'robotLegion3', 'robotLegion4'],
+                'mineEmpire': ['mineEmpire', 'mineEmpire2', 'mineEmpire3', 'mineEmpire4'],
+                'quantumLegion': ['quantumLegion', 'quantumLegion2', 'quantumLegion3', 'quantumLegion4'],
+                
+                // Master Tier - 5 pickaxes each
+                'timeMachine': ['timeMachine', 'timeMachine2', 'timeMachine3', 'timeMachine4', 'timeMachine5'],
+                'realityBender': ['realityBender', 'realityBender2', 'realityBender3', 'realityBender4', 'realityBender5'],
+                'dimensionBreaker': ['dimensionBreaker', 'dimensionBreaker2', 'dimensionBreaker3', 'dimensionBreaker4', 'dimensionBreaker5'],
+                
+                // Ultra Tier - 6 pickaxes each
+                'cosmicMiner': ['cosmicMiner', 'cosmicMiner2', 'cosmicMiner3', 'cosmicMiner4', 'cosmicMiner5', 'cosmicMiner6'],
+                'galaxyCrusher': ['galaxyCrusher', 'galaxyCrusher2', 'galaxyCrusher3', 'galaxyCrusher4', 'galaxyCrusher5', 'galaxyCrusher6'],
+                'universeShaper': ['universeShaper', 'universeShaper2', 'universeShaper3', 'universeShaper4', 'universeShaper5', 'universeShaper6'],
+                'multiverseHarvester': ['multiverseHarvester', 'multiverseHarvester2', 'multiverseHarvester3', 'multiverseHarvester4', 'multiverseHarvester5', 'multiverseHarvester6']
+            };
+            
+            // Check if this is a multi-pickaxe tool
+            if (toolGroups[toolId]) {
+                // Activate all pickaxes in the group
+                toolGroups[toolId].forEach(id => {
+                    const tool = document.getElementById(id);
+                    if (tool) {
+                        tool.classList.add('active');
+                        console.log(`Activated ${id}`);
+                    } else {
+                        console.error(`Tool element not found: ${id}`);
+                    }
+                });
+            } else {
+                // Single pickaxe tool
+                const tool = document.getElementById(toolId);
+                if (tool) {
+                    tool.classList.add('active');
+                    console.log(`Activated ${toolId}`);
+                } else {
+                    console.error(`Tool element not found: ${toolId}`);
+                }
+            }
+            
+            updateDebugInfo();
+        }
+        
+        function clearAllTools() {
+            const tools = [
+                // Basic Tier
+                'woodenPickaxe', 'stonePickaxe', 'ironPickaxe', 'diamondPickaxe', 'netheritePickaxe',
+                // Intermediate Tier
+                'miningRobot', 'automatedMine', 'quantumMiner',
+                // Advanced Tier - 3 pickaxes each
+                'pickaxeArmy', 'pickaxeArmy2', 'pickaxeArmy3',
+                'diamondLegion', 'diamondLegion2', 'diamondLegion3',
+                'netheriteSwarm', 'netheriteSwarm2', 'netheriteSwarm3',
+                // Expert Tier - 4 pickaxes each
+                'robotLegion', 'robotLegion2', 'robotLegion3', 'robotLegion4',
+                'mineEmpire', 'mineEmpire2', 'mineEmpire3', 'mineEmpire4',
+                'quantumLegion', 'quantumLegion2', 'quantumLegion3', 'quantumLegion4',
+                // Master Tier - 5 pickaxes each
+                'timeMachine', 'timeMachine2', 'timeMachine3', 'timeMachine4', 'timeMachine5',
+                'realityBender', 'realityBender2', 'realityBender3', 'realityBender4', 'realityBender5',
+                'dimensionBreaker', 'dimensionBreaker2', 'dimensionBreaker3', 'dimensionBreaker4', 'dimensionBreaker5',
+                // Ultra Tier - 6 pickaxes each
+                'cosmicMiner', 'cosmicMiner2', 'cosmicMiner3', 'cosmicMiner4', 'cosmicMiner5', 'cosmicMiner6',
+                'galaxyCrusher', 'galaxyCrusher2', 'galaxyCrusher3', 'galaxyCrusher4', 'galaxyCrusher5', 'galaxyCrusher6',
+                'universeShaper', 'universeShaper2', 'universeShaper3', 'universeShaper4', 'universeShaper5', 'universeShaper6',
+                'multiverseHarvester', 'multiverseHarvester2', 'multiverseHarvester3', 'multiverseHarvester4', 'multiverseHarvester5', 'multiverseHarvester6'
+            ];
+            
+            tools.forEach(toolId => {
+                const tool = document.getElementById(toolId);
+                if (tool) {
+                    tool.classList.remove('active');
+                }
+            });
+            
+            console.log('Cleared all tools');
+            updateDebugInfo();
+        }
+        
+        function updateDebugInfo() {
+            const tools = [
+                // Basic Tier
+                'woodenPickaxe', 'stonePickaxe', 'ironPickaxe', 'diamondPickaxe', 'netheritePickaxe',
+                // Intermediate Tier
+                'miningRobot', 'automatedMine', 'quantumMiner',
+                // Advanced Tier - 3 pickaxes each
+                'pickaxeArmy', 'pickaxeArmy2', 'pickaxeArmy3',
+                'diamondLegion', 'diamondLegion2', 'diamondLegion3',
+                'netheriteSwarm', 'netheriteSwarm2', 'netheriteSwarm3',
+                // Expert Tier - 4 pickaxes each
+                'robotLegion', 'robotLegion2', 'robotLegion3', 'robotLegion4',
+                'mineEmpire', 'mineEmpire2', 'mineEmpire3', 'mineEmpire4',
+                'quantumLegion', 'quantumLegion2', 'quantumLegion3', 'quantumLegion4',
+                // Master Tier - 5 pickaxes each
+                'timeMachine', 'timeMachine2', 'timeMachine3', 'timeMachine4', 'timeMachine5',
+                'realityBender', 'realityBender2', 'realityBender3', 'realityBender4', 'realityBender5',
+                'dimensionBreaker', 'dimensionBreaker2', 'dimensionBreaker3', 'dimensionBreaker4', 'dimensionBreaker5',
+                // Ultra Tier - 6 pickaxes each
+                'cosmicMiner', 'cosmicMiner2', 'cosmicMiner3', 'cosmicMiner4', 'cosmicMiner5', 'cosmicMiner6',
+                'galaxyCrusher', 'galaxyCrusher2', 'galaxyCrusher3', 'galaxyCrusher4', 'galaxyCrusher5', 'galaxyCrusher6',
+                'universeShaper', 'universeShaper2', 'universeShaper3', 'universeShaper4', 'universeShaper5', 'universeShaper6',
+                'multiverseHarvester', 'multiverseHarvester2', 'multiverseHarvester3', 'multiverseHarvester4', 'multiverseHarvester5', 'multiverseHarvester6'
+            ];
+            
+            const activeTools = tools.filter(toolId => {
+                const tool = document.getElementById(toolId);
+                return tool && tool.classList.contains('active');
+            });
+            
+            const debugInfo = document.getElementById('debugInfo');
+            if (activeTools.length > 0) {
+                debugInfo.textContent = `Active tools: ${activeTools.join(', ')}`;
+            } else {
+                debugInfo.textContent = 'No tools active';
+            }
+        }
+        
+        function showAllTools() {
+            const tools = [
+                // Basic Tier
+                'woodenPickaxe', 'stonePickaxe', 'ironPickaxe', 'diamondPickaxe', 'netheritePickaxe',
+                // Intermediate Tier
+                'miningRobot', 'automatedMine', 'quantumMiner',
+                // Advanced Tier - 3 pickaxes each
+                'pickaxeArmy', 'pickaxeArmy2', 'pickaxeArmy3',
+                'diamondLegion', 'diamondLegion2', 'diamondLegion3',
+                'netheriteSwarm', 'netheriteSwarm2', 'netheriteSwarm3',
+                // Expert Tier - 4 pickaxes each
+                'robotLegion', 'robotLegion2', 'robotLegion3', 'robotLegion4',
+                'mineEmpire', 'mineEmpire2', 'mineEmpire3', 'mineEmpire4',
+                'quantumLegion', 'quantumLegion2', 'quantumLegion3', 'quantumLegion4',
+                // Master Tier - 5 pickaxes each
+                'timeMachine', 'timeMachine2', 'timeMachine3', 'timeMachine4', 'timeMachine5',
+                'realityBender', 'realityBender2', 'realityBender3', 'realityBender4', 'realityBender5',
+                'dimensionBreaker', 'dimensionBreaker2', 'dimensionBreaker3', 'dimensionBreaker4', 'dimensionBreaker5',
+                // Ultra Tier - 6 pickaxes each
+                'cosmicMiner', 'cosmicMiner2', 'cosmicMiner3', 'cosmicMiner4', 'cosmicMiner5', 'cosmicMiner6',
+                'galaxyCrusher', 'galaxyCrusher2', 'galaxyCrusher3', 'galaxyCrusher4', 'galaxyCrusher5', 'galaxyCrusher6',
+                'universeShaper', 'universeShaper2', 'universeShaper3', 'universeShaper4', 'universeShaper5', 'universeShaper6',
+                'multiverseHarvester', 'multiverseHarvester2', 'multiverseHarvester3', 'multiverseHarvester4', 'multiverseHarvester5', 'multiverseHarvester6'
+            ];
+            
+            tools.forEach(toolId => {
+                const tool = document.getElementById(toolId);
+                if (tool) {
+                    tool.classList.add('active');
+                    tool.style.opacity = '1';
+                }
+            });
+            
+            console.log('Made all tools visible for debugging');
+            updateDebugInfo();
+        }
+        
+        // Initialize debug info
+        updateDebugInfo();
+    </script>
+</body>
+</html> 

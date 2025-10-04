@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BashiderDesideratatata</title>
+    <style>
+        body { font-family: 'Fira Mono', 'Consolas', 'Liberation Mono', 'Menlo', 'Monaco', 'Fixedsys', monospace; background: #f9f9f9; color: #222; margin: 0; padding: 2em; }
+        .poem { max-width: 700px; margin: 2em auto; background: #fff; padding: 2em 2.5em; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        h1 { text-align: center; margin-bottom: 1.5em; font-size: 2.2em; letter-spacing: 0.04em; }
+        .stanza-pair { position: relative; margin: 1.5em 0; }
+        .stanza-main, .stanza-hover {
+            display: block;
+            transition: opacity 0.5s;
+            font-size: 1.15em;
+            line-height: 1.7;
+            white-space: pre-line;
+            margin: 0;
+        }
+        .stanza-hover {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .stanza-pair:hover .stanza-main {
+            opacity: 0;
+        }
+        .stanza-pair:hover .stanza-hover {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="poem">
+        <h1>BashiderDesideratatata</h1>
+        <div class="stanza-pair">
+            <p class="stanza-main">Go thoughtfully amid the loops and pipes,
+and remember what power there is in clarity.</p>
+            <p class="stanza-hover">Go placidly amid the noise and the haste,
+and remember what peace there may be in silence.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">As far as possible, without sacrificing correctness,
+write scripts that others may understand.
+Double-quote your variables vigilantly,
+and escape the pitfalls of whitespace and globs;
+for even the seasoned scripters stumble.</p>
+            <p class="stanza-hover">As far as possible, without surrender,
+be on good terms with all persons.
+Speak your truth quietly and clearly;
+and listen to others,
+even to the dull and the ignorant;
+they too have their story.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Avoid the misuse of eval,
+for it is the harbinger of vulnerabilities.
+Should you call echo,
+ensure its arguments are predictable,
+lest your intentions be misunderstood.</p>
+            <p class="stanza-hover">Avoid loud and aggressive persons;
+they are vexatious to the spirit.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Embrace <code>$(...)</code> over backticks,
+for they nest gracefully and lend clarity.
+Learn the nuance of IFS with care;
+it holds the key to cleanly parsing data.
+Let simplicity guide your aliases and functions,
+for cleverness fades in the face of ambiguity.
+Remember, Bash is a tool,
+not the hammer for every nail.</p>
+            <p class="stanza-hover">If you compare yourself with others,
+you may become vain or bitter,
+for always there will be greater and lesser persons than yourself.
+Enjoy your achievements as well as your plans.
+Keep interested in your own career, however humble;
+it is a real possession in the changing fortunes of time.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">In complex tasks, call upon Python or AWK,
+acknowledging their grace where Bash falters.
+When faced with an if or while,
+test your conditions as POSIX intends,
+and reject the siren song of nonportable flags.
+Be mindful of <code>cd</code> and its transient state;
+use subshells to contain its reach.
+Learn from find, the tireless seeker,
+and xargs, its trusted ally.
+Together they traverse trees with purpose,
+bringing order to chaos.</p>
+            <p class="stanza-hover">Exercise caution in your business affairs,
+for the world is full of trickery.
+But let this not blind you to what virtue there is;
+many persons strive for high ideals,
+and everywhere life is full of heroism.
+Be yourself. Especially do not feign affection.
+Neither be cynical about love,
+for in the face of all aridity and disenchantment,
+it is as perennial as the grass.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Harness grep, the discerning eye,
+and sed, the quiet transformer.
+In their streams lies the poetry of text,
+flowing like water through pipes.
+Resist the temptation to misuse sudo;
+privilege is a weighty key.
+And in scripts, set traps to catch missteps,
+a guardian against chaos unforeseen.</p>
+            <p class="stanza-hover">Take kindly the counsel of the years,
+gracefully surrendering the things of youth.
+Nurture strength of spirit to shield you in sudden misfortune.
+But do not distress yourself with dark imaginings.
+Many fears are born of fatigue and loneliness.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Seek elegance in loops and arrays,
+for Bash, though humble, holds great power.
+Yet, do not despair at its quirks;
+even its pitfalls are teachers in disguise.
+You are a scripter of the Unix universe,
+no less than the tools you invoke;
+and your shell, like all shells, has its place.</p>
+            <p class="stanza-hover">Beyond a wholesome discipline,
+be gentle with yourself.
+You are a child of the universe
+no less than the trees and the stars;
+you have a right to be here.
+And whether or not it is clear to you,
+no doubt the universe is unfolding as it should.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">Walk boldly amid its intricacies,
+but know when to let go.
+Therefore, script with intention,
+and whatever your outputs and return codes,
+in the complexity of systems,
+find harmony with your shell.</p>
+            <p class="stanza-hover">Therefore be at peace with God,
+whatever you conceive Him to be.
+And whatever your labors and aspirations,
+in the noisy confusion of life,
+keep peace in your soul.</p>
+        </div>
+        <div class="stanza-pair">
+            <p class="stanza-main">With all its edge cases, bugs, and limitations,
+it is still a beautiful shell.
+Be precise.
+Strive to be efficient.</p>
+            <p class="stanza-hover">With all its sham, drudgery, and broken dreams,
+it is still a beautiful world.
+Be cheerful. Strive to be happy.</p>
+        </div>
+    </div>
+</body>
+</html> 

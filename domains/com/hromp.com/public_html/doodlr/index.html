@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doodlr — Collaborative Drawing App</title>
+  <link rel="stylesheet" href="../listen/styles.css" />
+  <style>
+    .hero {
+      text-align: center;
+      padding: 3rem 0;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .button.secondary {
+      background-color: #6c757d;
+    }
+    .button.secondary:hover {
+      background-color: #545b62;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .feature {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .feature h3 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    .feature p {
+      color: #666;
+      line-height: 1.6;
+    }
+    .coming-soon {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-radius: 5px;
+      padding: 1rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .coming-soon h3 {
+      color: #856404;
+      margin-bottom: 0.5rem;
+    }
+    .coming-soon p {
+      color: #856404;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">Doodlr</div>
+      <nav class="nav">
+        <a href="../listen/">Listen</a>
+        <a href="https://github.com/151henry151/doodlr" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Doodlr — Collaborative Drawing App</h1>
+        <p>A collaborative, zoomable pixel-art canvas with a 6-level hierarchical grid. Draw pixels, zoom into sections, and view the canvas across levels while maintaining consistent pixel positions.</p>
+        
+        <div class="actions">
+          <a class="button" href="./app/">Launch Web App</a>
+          <a class="button secondary" href="https://github.com/151henry151/doodlr" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </section>
+
+      <div class="coming-soon">
+        <h3>📱 Mobile App Coming Soon</h3>
+        <p>We're working on creating an Android APK for Doodlr. For now, you can use the web version which works great on mobile browsers!</p>
+      </div>
+
+      <section class="section">
+        <h2>Key Features</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>🎨 6-Level Canvas</h3>
+            <p>Hierarchical grid system with 729×729 total pixels, organized in 3×3 sections per level</p>
+          </div>
+          <div class="feature">
+            <h3>🔍 Zoom & Navigate</h3>
+            <p>Zoom between levels 1–6 and navigate through different sections of the canvas</p>
+          </div>
+          <div class="feature">
+            <h3>👥 Collaborative</h3>
+            <p>Real-time collaborative drawing with other users on the same canvas</p>
+          </div>
+          <div class="feature">
+            <h3>📱 Cross-Platform</h3>
+            <p>Works on web browsers and mobile devices with responsive design</p>
+          </div>
+          <div class="feature">
+            <h3>🎯 Pixel Perfect</h3>
+            <p>Consistent pixel alignment across all zoom levels and sections</p>
+          </div>
+          <div class="feature">
+            <h3>⚡ Real-Time</h3>
+            <p>FastAPI backend with WebSocket support for instant updates</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>How It Works</h2>
+        <div class="workflow">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Choose Your Level</h3>
+            <p>Start at level 1 for the full canvas view, or zoom into specific sections</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Pick Your Color</h3>
+            <p>Select from a palette of colors to paint your pixels</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Draw & Collaborate</h3>
+            <p>Click to place pixels and see others' contributions in real-time</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Explore & Zoom</h3>
+            <p>Navigate through different sections and zoom levels to see the full artwork</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Technical Details</h2>
+        <div class="tech-details">
+          <div class="tech-item">
+            <h3>Backend</h3>
+            <p>FastAPI, Uvicorn, SQLAlchemy, SQLite</p>
+          </div>
+          <div class="tech-item">
+            <h3>Frontend</h3>
+            <p>Expo, React Native, React Native Web</p>
+          </div>
+          <div class="tech-item">
+            <h3>Real-Time</h3>
+            <p>WebSocket connections for live collaboration</p>
+          </div>
+          <div class="tech-item">
+            <h3>License</h3>
+            <p>GNU General Public License v3.0</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Get Started</h2>
+        <div class="download-section">
+          <p>Ready to start drawing? Launch the web app now:</p>
+          <div class="download-actions">
+            <a class="button primary large" href="./app/">Launch Doodlr Web App</a>
+            <p class="download-note">No installation required - works in any modern browser</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Links</h2>
+        <div class="badges">
+          <a class="badge" href="https://github.com/151henry151/doodlr" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          <a class="badge" href="./app/">Launch Web App</a>
+          <a class="badge" href="../listen/">Listen App</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © 2025 Doodlr. <a href="https://github.com/151henry151/doodlr" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="../listen/">Listen App</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html> 

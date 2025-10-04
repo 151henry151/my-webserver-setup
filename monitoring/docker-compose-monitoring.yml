@@ -1,0 +1,111 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - '8080:8080'
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+  node_exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    ports:
+      - '9100:9100'
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+  nginx_exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx_exporter
+    ports:
+      - '9114:9113'
+    command:
+      - '-nginx.scrape-uri=http://nginx:8080/nginx_status'
+    restart: unless-stopped
+    networks:
+      - monitoring
+      - mynetwork  # To access nginx container
+
+  # jellyfin_exporter:
+  #   image: ghcr.io/jjlrjjlr/jellyfin-exporter:latest
+  #   container_name: jellyfin_exporter
+  #   environment:
+  #     - JELLYFIN_URL=http://jellyfin:8096
+  #     - JELLYFIN_API_KEY=93ac2891a83a4eaab86e865146bc78dc
+  #   ports:
+  #     - "8080:8080"
+  #   restart: unless-stopped
+  #   networks:
+  #     - monitoring
+  #     - mynetwork  # To access jellyfin container
+
+  ebpf_exporter:
+    build:
+      context: ./ebpf
+      dockerfile: Dockerfile
+    privileged: true
+    volumes:
+      - /sys/kernel/debug:/sys/kernel/debug:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /proc:/proc:ro
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+    cap_add:
+      - SYS_ADMIN
+      - IPC_LOCK
+      - SYS_RESOURCE
+      - SYS_BPF
+      - PERFMON
+    security_opt:
+      - apparmor:unconfined
+    pid: host
+    network_mode: host
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  monitoring:
+    driver: bridge
+  mynetwork:
+    external: true 

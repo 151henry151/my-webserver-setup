@@ -1,0 +1,16 @@
+{
+  "name": "dev-phone-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Dev Phone",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "twilio": "^5.8.0"
+  }
+}

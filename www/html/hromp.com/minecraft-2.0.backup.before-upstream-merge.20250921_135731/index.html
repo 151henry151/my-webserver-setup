@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Minecraft Clicker - Hromp.com</title>
+    <link rel="stylesheet" href="css/style.css?v=3.7">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₿</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⛏️ Minecraft Clicker</h1>
+            <p class="subtitle">Click to mine blocks and upgrade your mining operation!</p>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="bitcoin-display">
+                    <div class="bitcoin-amount">
+                        <span id="bitcoinAmount">0</span>
+                        <span class="currency">Blocks</span>
+                    </div>
+                    <div class="bitcoin-rate">
+                        <span id="bitcoinRate">0</span>
+                        <span class="currency">Blocks/s</span>
+                    </div>
+                </div>
+
+                <div class="click-area">
+                    <button id="bitcoinButton" class="grass-block-button">
+                        <div class="grass-block">
+                            <img src="assets/grassblock.jpeg" alt="Minecraft Grass Block" class="grass-block-image" style="display: block; width: 100%; height: 100%;">
+                        </div>
+                        <div class="mining-tool" id="miningTool">
+                            <div class="pickaxe wooden-pickaxe" id="woodenPickaxe">
+                                <img src="assets/tools/woodpickaxe.png" alt="Wooden Pickaxe" class="pickaxe-image">
+                            </div>
+                                                           <div class="pickaxe stone-pickaxe" id="stonePickaxe">
+                                   <img src="assets/tools/stonepickaxe.png" alt="Stone Pickaxe" class="pickaxe-image">
+                               </div>
+                            <div class="pickaxe iron-pickaxe" id="ironPickaxe">
+                                <img src="assets/tools/ironpickaxe.png" alt="Iron Pickaxe" class="pickaxe-image">
+                            </div>
+                            <div class="pickaxe diamond-pickaxe" id="diamondPickaxe">
+                                <img src="assets/tools/diamondpickaxe.png" alt="Diamond Pickaxe" class="pickaxe-image">
+                            </div>
+                            <div class="pickaxe netherite-pickaxe" id="netheritePickaxe">
+                                <img src="assets/tools/netheritepickaxe.png" alt="Netherite Pickaxe" class="pickaxe-image">
+                            </div>
+                            <div class="mining-robot" id="miningRobot">
+                                <img src="assets/tools/stonepickaxe.png" alt="Mining Robot" class="pickaxe-image">
+                            </div>
+                            <div class="automated-mine" id="automatedMine">
+                                <img src="assets/tools/stonepickaxe.png" alt="Automated Mine" class="pickaxe-image">
+                            </div>
+                            <div class="quantum-miner" id="quantumMiner">
+                                <img src="assets/tools/stonepickaxe.png" alt="Quantum Miner" class="pickaxe-image">
+                            </div>
+                            <div class="pickaxe-army" id="pickaxeArmy">
+                                <img src="assets/tools/stonepickaxe.png" alt="Pickaxe Army" class="pickaxe-image">
+                            </div>
+                            <div class="diamond-legion" id="diamondLegion">
+                                <img src="assets/tools/diamondpickaxe.png" alt="Diamond Legion" class="pickaxe-image">
+                            </div>
+                            <div class="netherite-swarm" id="netheriteSwarm">
+                                <img src="assets/tools/stonepickaxe.png" alt="Netherite Swarm" class="pickaxe-image">
+                            </div>
+                            <div class="robot-legion" id="robotLegion">
+                                <img src="assets/tools/stonepickaxe.png" alt="Robot Legion" class="pickaxe-image">
+                            </div>
+                            <div class="mine-empire" id="mineEmpire">
+                                <img src="assets/tools/stonepickaxe.png" alt="Mine Empire" class="pickaxe-image">
+                            </div>
+                            <div class="quantum-legion" id="quantumLegion">
+                                <img src="assets/tools/stonepickaxe.png" alt="Quantum Legion" class="pickaxe-image">
+                            </div>
+                            <div class="time-machine" id="timeMachine">
+                                <img src="assets/tools/stonepickaxe.png" alt="Time Machine" class="pickaxe-image">
+                            </div>
+                            <div class="reality-bender" id="realityBender">
+                                <img src="assets/tools/stonepickaxe.png" alt="Reality Bender" class="pickaxe-image">
+                            </div>
+                            <div class="dimension-breaker" id="dimensionBreaker">
+                                <img src="assets/tools/stonepickaxe.png" alt="Dimension Breaker" class="pickaxe-image">
+                            </div>
+                            <div class="cosmic-miner" id="cosmicMiner">
+                                <img src="assets/tools/stonepickaxe.png" alt="Cosmic Miner" class="pickaxe-image">
+                            </div>
+                            <div class="galaxy-crusher" id="galaxyCrusher">
+                                <img src="assets/tools/stonepickaxe.png" alt="Galaxy Crusher" class="pickaxe-image">
+                            </div>
+                            <div class="universe-shaper" id="universeShaper">
+                                <img src="assets/tools/stonepickaxe.png" alt="Universe Shaper" class="pickaxe-image">
+                            </div>
+                            <div class="multiverse-harvester" id="multiverseHarvester">
+                                <img src="assets/tools/stonepickaxe.png" alt="Multiverse Harvester" class="pickaxe-image">
+                            </div>
+                            <div class="existence-miner" id="existenceMiner">
+                                <img src="assets/tools/stonepickaxe.png" alt="Existence Miner" class="pickaxe-image">
+                            </div>
+                            <div class="infinity-breaker" id="infinityBreaker">
+                                <img src="assets/tools/stonepickaxe.png" alt="Infinity Breaker" class="pickaxe-image">
+                            </div>
+                            <div class="rebirth" id="rebirth">
+                                <img src="assets/tools/stonepickaxe.png" alt="Rebirth" class="pickaxe-image">
+                            </div>
+                        </div>
+                        <span class="click-text">Click to Mine</span>
+                    </button>
+                    <div class="click-value">
+                        +<span id="clickValue">1</span> Blocks per click
+                    </div>
+                    <div class="enchantment-effects" id="enchantmentEffects" style="display: none;">
+                        <div class="effect-indicator" id="fortuneEffect" style="display: none;">
+                            <span class="effect-icon">🍀</span> Fortune Active
+                        </div>
+                        <div class="effect-indicator" id="lootingEffect" style="display: none;">
+                            <span class="effect-icon">💎</span> Looting Active
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upgrades-section">
+                    <h2>Mining Tools</h2>
+                    <div class="upgrades-grid" id="upgradesGrid">
+                        <!-- Upgrades will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="enchantments-section">
+                    <h2>Enchantments</h2>
+                    <div class="enchantments-grid" id="enchantmentsGrid">
+                        <!-- Enchantments will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="achievements-section">
+                    <h2>Achievements</h2>
+                    <div class="achievements-grid" id="achievementsGrid">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                                    <div class="stats-panel">
+                        <h3>Statistics</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Blocks Mined:</span>
+                            <span class="stat-value" id="totalMined">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Clicks:</span>
+                            <span class="stat-value" id="totalClicks">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Upgrades Owned:</span>
+                            <span class="stat-value" id="upgradesOwned">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Play Time:</span>
+                            <span class="stat-value" id="playTime">0s</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Rebirths:</span>
+                            <span class="stat-value" id="rebirthCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Current Block:</span>
+                            <span class="stat-value" id="currentBlockName">Grass Block</span>
+                        </div>
+                    </div>
+
+                <div class="controls-panel">
+                    <h3>Controls</h3>
+                    <button id="saveButton" class="control-button">Save Game</button>
+                    <button id="loadButton" class="control-button">Load Game</button>
+                    <button id="resetButton" class="control-button reset">Reset Game</button>
+                </div>
+
+                <div class="username-panel">
+                    <h3>Account</h3>
+                    <div id="loginForm" class="account-input">
+                        <input type="text" id="usernameInput" placeholder="Enter username" maxlength="20">
+                        <input type="password" id="passwordInput" placeholder="Enter password" maxlength="50">
+                        <div class="button-row">
+                            <button id="registerButton" class="control-button">Register</button>
+                            <button id="loginButton" class="control-button">Login</button>
+                        </div>
+                    </div>
+                    <div id="userInfo" class="user-info" style="display: none;">
+                        <div id="currentUsername" class="current-username"></div>
+                        <div class="button-row">
+                            <button id="profileButton" class="control-button">Profile</button>
+                            <button id="logoutButton" class="control-button">Logout</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highscore-panel">
+                    <h3>High Scores</h3>
+                    <button id="saveHighScoreButton" class="control-button">Save High Score</button>
+                    <button id="showHighScoresButton" class="control-button">View High Scores</button>
+                    <div id="personalHighScore" class="personal-highscore"></div>
+                </div>
+            </div>
+        </main>
+
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script type="module" src="js/achievements/index.js"></script>
+    <script src="js/script.js?v=4.1"></script>
+</body>
+</html> 

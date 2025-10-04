@@ -1,0 +1,788 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    font-weight: 300;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+    align-items: start;
+}
+
+.game-area {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bitcoin-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.bitcoin-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4CAF50;
+}
+
+.bitcoin-rate {
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-align: right;
+}
+
+.currency {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin-left: 5px;
+}
+
+.click-area {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grass-block-button {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #2E7D32;
+    background: #4CAF50;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 auto;
+}
+
+.grass-block {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.grass-block-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 0;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.grass-block-button:hover .grass-block {
+    transform: scale(1.05);
+}
+
+.grass-block-button:active .grass-block {
+    transform: scale(0.95);
+}
+
+/* Mining Tools */
+.mining-tool {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.pickaxe, .mining-robot, .automated-mine, .quantum-miner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pickaxe.active, .mining-robot.active, .automated-mine.active, .quantum-miner.active {
+    opacity: 1;
+}
+
+/* Wooden Pickaxe - positioned at 12 o'clock */
+.wooden-pickaxe {
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -130px) rotate(-45deg);
+    animation: mineFromTop 0.5s ease-in-out infinite;
+}
+
+.pickaxe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Stone Pickaxe - positioned at 1 o'clock */
+.stone-pickaxe {
+    width: 60px;
+    height: 60px;
+    transform: translate(30px, -110px) rotate(-30deg);
+    animation: mineFromTopRight 0.4s ease-in-out infinite;
+}
+
+/* Iron Pickaxe - positioned at 3 o'clock */
+.iron-pickaxe {
+    width: 60px;
+    height: 60px;
+    transform: translate(130px, -50%) rotate(0deg);
+    animation: mineFromRight 0.3s ease-in-out infinite;
+}
+
+/* Diamond Pickaxe - positioned at 5 o'clock */
+.diamond-pickaxe {
+    width: 60px;
+    height: 60px;
+    transform: translate(30px, 10px) rotate(30deg);
+    animation: mineFromBottomRight 0.25s ease-in-out infinite;
+}
+
+/* Netherite Pickaxe - positioned at 6 o'clock */
+.netherite-pickaxe {
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, 130px) rotate(45deg);
+    animation: mineFromBottom 0.2s ease-in-out infinite;
+}
+
+/* Mining Robot - positioned at 7 o'clock */
+.mining-robot {
+    width: 80px;
+    height: 80px;
+    transform: translate(-130px, 10px) rotate(60deg);
+    animation: robotMineFromBottomLeft 0.6s ease-in-out infinite;
+}
+
+/* Automated Mine - positioned at 9 o'clock */
+.automated-mine {
+    width: 100px;
+    height: 100px;
+    transform: translate(-180px, -50%) rotate(90deg);
+    animation: automatedMineFromLeft 0.8s ease-in-out infinite;
+}
+
+/* Quantum Miner - positioned at 11 o'clock */
+.quantum-miner {
+    width: 120px;
+    height: 120px;
+    transform: translate(-170px, -110px) rotate(120deg);
+    animation: quantumMineFromTopLeft 1s ease-in-out infinite;
+}
+
+/* Pickaxe Army - positioned at 2 o'clock */
+.pickaxe-army {
+    width: 80px;
+    height: 80px;
+    transform: translate(80px, -80px) rotate(-15deg);
+    animation: mineFromTopRight 0.6s ease-in-out infinite;
+}
+
+/* Diamond Legion - positioned at 4 o'clock */
+.diamond-legion {
+    width: 90px;
+    height: 90px;
+    transform: translate(80px, 80px) rotate(15deg);
+    animation: mineFromBottomRight 0.5s ease-in-out infinite;
+}
+
+/* Netherite Swarm - positioned at 8 o'clock */
+.netherite-swarm {
+    width: 100px;
+    height: 100px;
+    transform: translate(-80px, 80px) rotate(105deg);
+    animation: mineFromBottom 0.4s ease-in-out infinite;
+}
+
+/* Robot Legion - positioned at 10 o'clock */
+.robot-legion {
+    width: 110px;
+    height: 110px;
+    transform: translate(-80px, -80px) rotate(135deg);
+    animation: robotMineFromBottomLeft 0.7s ease-in-out infinite;
+}
+
+/* Mine Empire - positioned at 12:30 */
+.mine-empire {
+    width: 130px;
+    height: 130px;
+    transform: translate(-25px, -150px) rotate(-30deg);
+    animation: automatedMineFromLeft 0.9s ease-in-out infinite;
+}
+
+/* Quantum Legion - positioned at 1:30 */
+.quantum-legion {
+    width: 140px;
+    height: 140px;
+    transform: translate(55px, -120px) rotate(-15deg);
+    animation: quantumMineFromTopLeft 1.1s ease-in-out infinite;
+}
+
+/* Time Machine - positioned at 3:30 */
+.time-machine {
+    width: 150px;
+    height: 150px;
+    transform: translate(150px, -25px) rotate(15deg);
+    animation: mineFromRight 0.8s ease-in-out infinite;
+}
+
+/* Reality Bender - positioned at 5:30 */
+.reality-bender {
+    width: 160px;
+    height: 160px;
+    transform: translate(55px, 120px) rotate(45deg);
+    animation: mineFromBottomRight 0.7s ease-in-out infinite;
+}
+
+/* Dimension Breaker - positioned at 6:30 */
+.dimension-breaker {
+    width: 170px;
+    height: 170px;
+    transform: translate(-25px, 150px) rotate(75deg);
+    animation: mineFromBottom 0.6s ease-in-out infinite;
+}
+
+/* Cosmic Miner - positioned at 7:30 */
+.cosmic-miner {
+    width: 180px;
+    height: 180px;
+    transform: translate(-120px, 55px) rotate(105deg);
+    animation: robotMineFromBottomLeft 0.8s ease-in-out infinite;
+}
+
+/* Galaxy Crusher - positioned at 9:30 */
+.galaxy-crusher {
+    width: 190px;
+    height: 190px;
+    transform: translate(-150px, -25px) rotate(135deg);
+    animation: automatedMineFromLeft 1.0s ease-in-out infinite;
+}
+
+/* Universe Shaper - positioned at 10:30 */
+.universe-shaper {
+    width: 200px;
+    height: 200px;
+    transform: translate(-120px, -55px) rotate(165deg);
+    animation: quantumMineFromTopLeft 1.2s ease-in-out infinite;
+}
+
+/* Multiverse Harvester - positioned at 12:15 */
+.multiverse-harvester {
+    width: 210px;
+    height: 210px;
+    transform: translate(-65px, -140px) rotate(-45deg);
+    animation: mineFromTop 0.9s ease-in-out infinite;
+}
+
+/* Existence Miner - positioned at 1:45 */
+.existence-miner {
+    width: 220px;
+    height: 220px;
+    transform: translate(105px, -100px) rotate(-15deg);
+    animation: mineFromTopRight 1.0s ease-in-out infinite;
+}
+
+/* Infinity Breaker - positioned at 3:15 */
+.infinity-breaker {
+    width: 230px;
+    height: 230px;
+    transform: translate(140px, 25px) rotate(15deg);
+    animation: mineFromRight 0.9s ease-in-out infinite;
+}
+
+/* Mining Animations from different positions */
+@keyframes mineFromTop {
+    0%, 100% { transform: translate(-50%, -130px) rotate(-45deg) translateY(0px); }
+    50% { transform: translate(-50%, -130px) rotate(-45deg) translateY(15px); }
+}
+
+@keyframes mineFromTopRight {
+    0%, 100% { transform: translate(30px, -110px) rotate(-30deg) translateX(0px) translateY(0px); }
+    50% { transform: translate(30px, -110px) rotate(-30deg) translateX(-10px) translateY(10px); }
+}
+
+@keyframes mineFromRight {
+    0%, 100% { transform: translate(130px, -50%) rotate(0deg) translateX(0px); }
+    50% { transform: translate(130px, -50%) rotate(0deg) translateX(-15px); }
+}
+
+@keyframes mineFromBottomRight {
+    0%, 100% { transform: translate(30px, 10px) rotate(30deg) translateX(0px) translateY(0px); }
+    50% { transform: translate(30px, 10px) rotate(30deg) translateX(-10px) translateY(-10px); }
+}
+
+@keyframes mineFromBottom {
+    0%, 100% { transform: translate(-50%, 130px) rotate(45deg) translateY(0px); }
+    50% { transform: translate(-50%, 130px) rotate(45deg) translateY(-15px); }
+}
+
+@keyframes robotMineFromBottomLeft {
+    0%, 100% { transform: translate(-130px, 10px) rotate(60deg) scale(1); }
+    25% { transform: translate(-130px, 10px) rotate(60deg) scale(1.1) rotate(5deg); }
+    50% { transform: translate(-130px, 10px) rotate(60deg) scale(1); }
+    75% { transform: translate(-130px, 10px) rotate(60deg) scale(1.1) rotate(-5deg); }
+}
+
+@keyframes automatedMineFromLeft {
+    0%, 100% { transform: translate(-180px, -50%) rotate(90deg) scale(1); }
+    50% { transform: translate(-180px, -50%) rotate(90deg) scale(1.05); }
+}
+
+@keyframes quantumMineFromTopLeft {
+    0%, 100% { 
+        transform: translate(-170px, -110px) rotate(120deg) scale(1) rotate(0deg);
+        box-shadow: 0 0 20px rgba(156, 39, 176, 0.5);
+    }
+    25% { 
+        transform: translate(-170px, -110px) rotate(120deg) scale(1.1) rotate(90deg);
+        box-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
+    }
+    50% { 
+        transform: translate(-170px, -110px) rotate(120deg) scale(1) rotate(180deg);
+        box-shadow: 0 0 20px rgba(156, 39, 176, 0.5);
+    }
+    75% { 
+        transform: translate(-170px, -110px) rotate(120deg) scale(1.1) rotate(270deg);
+        box-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
+    }
+}
+
+.click-text {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    white-space: nowrap;
+    z-index: 5;
+}
+
+.click-text {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.click-value {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    color: #ffd700;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    z-index: 4;
+}
+
+.upgrades-section, .achievements-section {
+    margin-bottom: 30px;
+}
+
+.upgrades-section h2, .achievements-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #4CAF50;
+    border-bottom: 2px solid rgba(76, 175, 80, 0.3);
+    padding-bottom: 10px;
+}
+
+.upgrades-grid, .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.upgrade-item, .achievement-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upgrade-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.upgrade-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.upgrade-item.disabled:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.upgrade-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4CAF50;
+}
+
+.upgrade-description {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.upgrade-cost {
+    font-size: 0.9rem;
+    color: #ffd700;
+    font-weight: 500;
+}
+
+.upgrade-owned {
+    font-size: 0.8rem;
+    color: #4CAF50;
+    margin-top: 5px;
+}
+
+.achievement-item {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.achievement-item.locked {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.6;
+}
+
+.achievement-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #4CAF50;
+}
+
+.achievement-description {
+    font-size: 0.8rem;
+    color: #a0a0a0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stats-panel, .controls-panel, .username-panel, .highscore-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-panel h3, .controls-panel h3, .username-panel h3, .highscore-panel h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #4CAF50;
+    border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+    padding-bottom: 8px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    color: #ffd700;
+    font-weight: 600;
+}
+
+.control-button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.control-button:hover {
+    background: rgba(76, 175, 80, 0.3);
+    transform: translateY(-1px);
+}
+
+.control-button.reset {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.control-button.reset:hover {
+    background: rgba(244, 67, 54, 0.3);
+}
+
+.username-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.username-input input {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.username-input input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.username-input input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.username-input .control-button {
+    width: auto;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.current-username {
+    font-size: 0.9rem;
+    color: #ffd700;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.personal-highscore {
+    font-size: 0.9rem;
+    color: #4CAF50;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    margin-top: 10px;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.error {
+    background: rgba(244, 67, 54, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        order: -1;
+    }
+    
+    .upgrades-grid, .achievements-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .bitcoin-button {
+        width: 150px;
+        height: 150px;
+        font-size: 2rem;
+    }
+    
+    .bitcoin-symbol {
+        font-size: 3rem;
+    }
+    
+    .bitcoin-amount {
+        font-size: 2rem;
+    }
+    
+    .upgrades-grid, .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bitcoin-display {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-area {
+        padding: 20px;
+    }
+    
+    .bitcoin-button {
+        width: 120px;
+        height: 120px;
+        font-size: 1.5rem;
+    }
+    
+    .bitcoin-symbol {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animation for clicking */
+@keyframes blockBreak {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.grass-block-button.clicked .grass-block {
+    animation: blockBreak 0.2s ease;
+}
+
+/* Floating particles effect */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    width: 8px;
+    height: 8px;
+    background: #8BC34A;
+    border: 1px solid #5D4037;
+    border-radius: 2px;
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+} 

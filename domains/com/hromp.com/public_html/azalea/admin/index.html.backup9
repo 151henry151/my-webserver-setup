@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azalea Gallery Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            background: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .login-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .admin-panel {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: none;
+            background: none;
+            font-size: 1rem;
+        }
+
+        .tab.active {
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            padding: 2rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #e0e0e0;
+            border-radius: 10px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #e8f0fe;
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .image-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .image-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-actions {
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-rotate {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-rotate:hover {
+            background: #e67e22;
+        }
+
+        .btn-move {
+            background: #9b59b6;
+            color: white;
+        }
+
+        .btn-move:hover {
+            background: #8e44ad;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .success {
+            background: #27ae60;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .image-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../" class="back-link">← Back to Gallery</a>
+        <h1>Gallery Admin</h1>
+    </div>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm" class="login-form">
+            <h2>Admin Login</h2>
+            <form id="login">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div id="loginError" class="error" style="display: none;"></div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel">
+            <div class="tabs">
+                <button class="tab" onclick="showTab('upload')">Upload</button>
+                <button class="tab active" onclick="showTab('manage')">Manage</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Upload Tab -->
+                <div id="uploadTab" class="tab-panel" style="display: none;">
+                    <h2>Upload New Image</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <p>Drag and drop images here or click to select</p>
+                        <input type="file" id="fileInput" multiple accept="image/*">
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            Choose Files
+                        </button>
+                    </div>
+                    <div id="uploadStatus"></div>
+                </div>
+
+                <!-- Manage Tab -->
+                <div id="manageTab" class="tab-panel">
+                    <h2>Manage Images</h2>
+                    
+                    <div id="imageList" class="image-list">
+                        <div class="loading">Loading images...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLoggedIn = false;
+
+        // Check if already logged in
+        if (localStorage.getItem('adminToken')) {
+            isLoggedIn = true;
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminPanel').classList.add('active');
+            loadImages();
+        }
+
+        // Login form submission
+        document.getElementById('login').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/azalea/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('adminToken', data.token);
+                    isLoggedIn = true;
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('adminPanel').classList.add('active');
+                    loadImages();
+                } else {
+                    document.getElementById('loginError').textContent = data.error;
+                    document.getElementById('loginError').style.display = 'block';
+                }
+            } catch (error) {
+                document.getElementById('loginError').textContent = 'Network error. Please try again.';
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+
+        // Tab switching
+        function showTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.style.display = 'none');
+            document.getElementById(tabName + 'Tab').style.display = 'block';
+            
+            if (tabName === 'manage') {
+                loadImages();
+            }
+        }
+
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        async function handleFiles(files) {
+            const statusDiv = document.getElementById('uploadStatus');
+            statusDiv.innerHTML = '<div class="loading">Uploading images...</div>';
+            
+            for (let file of files) {
+                if (!file.type.startsWith('image/')) {
+                    showError('uploadStatus', `${file.name} is not an image file.`);
+                    continue;
+                }
+                
+                const formData = new FormData();
+                formData.append('image', file);
+                
+                try {
+                    const response = await fetch('/azalea/api/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                        },
+                        body: formData
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (!response.ok) {
+                        showError('uploadStatus', data.error || 'Upload failed');
+                        return;
+                    }
+                } catch (error) {
+                    showError('uploadStatus', 'Network error. Please try again.');
+                    return;
+                }
+            }
+            
+            showSuccess('uploadStatus', 'Images uploaded successfully!');
+            loadImages();
+        }
+
+        // Load images for management
+        async function loadImages() {
+            const imageList = document.getElementById('imageList');
+            imageList.innerHTML = '<div class="loading">Loading images...</div>';
+            
+            try {
+                const response = await fetch('/azalea/api/images');
+                const images = await response.json();
+                
+                if (images.length === 0) {
+                    imageList.innerHTML = '<div class="loading">No images found.</div>';
+                    return;
+                }
+                
+                imageList.innerHTML = images.map((image, index) => `
+                    <div class="image-item">
+                        <img src="/azalea/images/${image.filename}" alt="Image">
+                        <div class="image-actions">
+                            <button class="btn-small btn-rotate" onclick="rotateImage(${image.id}, 'clockwise')">
+                                ↻ 90°
+                            </button>
+                            <button class="btn-small btn-rotate" onclick="rotateImage(${image.id}, 'counterclockwise')">
+                                ↺ 90°
+                            </button>
+                            <button class="btn-small btn-move" onclick="moveImage(${image.id}, ${index > 0 ? index - 1 : 'up'})">
+                                ↑
+                            </button>
+                            <button class="btn-small btn-move" onclick="moveImage(${image.id}, ${index < images.length - 1 ? index + 1 : 'down'})">
+                                ↓
+                            </button>
+                            <button class="btn-small btn-delete" onclick="deleteImage(${image.id}, '${image.filename}')">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                imageList.innerHTML = '<div class="error">Error loading images. Please try again.</div>';
+            }
+        }
+
+        // Delete image
+        async function deleteImage(id, filename) {
+            if (!confirm(`Are you sure you want to delete "${filename}"?`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/azalea/api/images/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                    }
+                });
+                
+                if (response.ok) {
+                    loadImages();
+                    showSuccess('uploadStatus', 'Image deleted successfully');
+                } else {
+                    const data = await response.json();
+                    showError('uploadStatus', data.error || 'Failed to delete image');
+                }
+            } catch (error) {
+                showError('uploadStatus', 'Network error. Please try again.');
+            }
+        }
+
+        // Rotate image
+        async function rotateImage(id, direction) {
+            try {
+                const response = await fetch(`/azalea/api/images/${id}/rotate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                    },
+                    body: JSON.stringify({ direction })
+                });
+                
+                if (response.ok) {
+                    loadImages();
+                    showSuccess('uploadStatus', 'Image rotated successfully');
+                } else {
+                    const data = await response.json();
+                    showError('uploadStatus', data.error || 'Failed to rotate image');
+                }
+            } catch (error) {
+                showError('uploadStatus', 'Network error. Please try again.');
+            }
+        }
+
+        // Move image
+        async function moveImage(id, newPosition) {
+            try {
+                const response = await fetch('/azalea/api/reorder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                    },
+                    body: JSON.stringify({ id, position: newPosition })
+                });
+                
+                if (response.ok) {
+                    loadImages();
+                } else {
+                    const data = await response.json();
+                    showError('uploadStatus', data.error || 'Failed to reorder image');
+                }
+            } catch (error) {
+                showError('uploadStatus', 'Network error. Please try again.');
+            }
+        }
+
+        // Utility functions
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function showSuccess(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="success">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

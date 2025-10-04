@@ -1,0 +1,11 @@
+server {
+    listen 8080;
+    server_name localhost;
+
+    location /nginx_status {
+        stub_status on;
+        access_log off;
+        allow 172.0.0.0/8;  # Allow Docker network
+        deny all;
+    }
+} 

@@ -1,0 +1,78 @@
+programs:
+  - name: syscalls
+    metrics:
+      counters:
+        - name: syscalls_total
+          help: Number of system calls made by processes
+          labels:
+            - name: syscall
+              size: 8
+              decoders:
+                - name: syscall
+            - name: comm
+              size: 128
+              decoders:
+                - name: string
+                - name: regexp
+                  regexps:
+                    - ^(nginx|qbittorrent|jellyfin|sonarr|radarr|prowlarr).*$
+    kprobes:
+      syscall_enter:
+        syscall: sys_enter
+        handler: syscall_entry
+
+  - name: tcp_monitor
+    metrics:
+      histograms:
+        - name: tcp_connection_duration_seconds
+          help: Duration of TCP connections
+          bucket_type: exp2
+          bucket_min: 1
+          bucket_max: 65536
+          bucket_multiplier: 0.001
+          labels:
+            - name: pid
+              size: 4
+              decoders:
+                - name: uint
+            - name: comm
+              size: 128
+              decoders:
+                - name: string
+                - name: regexp
+                  regexps:
+                    - ^(nginx|qbittorrent|jellyfin|sonarr|radarr|prowlarr).*$
+    kprobes:
+      tcp_connect:
+        syscall: tcp_connect
+        handler: tcp_connect
+
+  - name: cachestat
+    metrics:
+      counters:
+        - name: page_cache_ops_total
+          help: Page cache operation counters
+          labels:
+            - name: operation
+              size: 8
+              decoders:
+                - name: static_map
+                  static_map:
+                    1: miss
+                    2: hit
+                    3: readahead
+                    4: readahead_hit
+            - name: comm
+              size: 128
+              decoders:
+                - name: string
+                - name: regexp
+                  regexps:
+                    - ^(nginx|qbittorrent|jellyfin|sonarr|radarr|prowlarr).*$
+    kprobes:
+      page_cache_miss:
+        syscall: add_to_page_cache_lru
+        handler: page_cache_miss
+      page_cache_hit:
+        syscall: mark_page_accessed
+        handler: page_cache_hit 

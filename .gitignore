@@ -1,5 +1,21 @@
-# Python virtual environment
-highscores_env/
+# Logs
+*.log
+logs/
+*.out
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# SSL certificates (should be managed by certbot)
+/etc/letsencrypt/
+
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -8,16 +24,6 @@ __pycache__/
 env/
 venv/
 ENV/
-
-# Database files
-*.db
-*.db-shm
-*.db-wal
-highscores.db*
-
-# Logs
-*.log
-logs/
 
 # IDE files
 .vscode/
@@ -32,4 +38,60 @@ Thumbs.db
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
+# Backup files
+*.backup
+*.bak
+
+# Docker volumes and data
+docker-data/
+volumes/
+
+# Sensitive configuration files
+*.env
+.env.local
+.env.production
+secrets/
+configuration/ini/twilio.ini
+configuration/ini/credentials.ini
+
+# Cache directories
+.cache/
+cache/
+
+# Build artifacts
+dist/
+build/
+*.bundle.js
+*.bundle.js.map
+
+# Media files (too large for git)
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.wmv
+*.flv
+
+# Audio
+*.mp3
+*.wav
+*.flac
+*.aac
+
+# Images (except small ones)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.webp
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
