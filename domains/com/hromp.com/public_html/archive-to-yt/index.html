@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive to YouTube — Upload archive.org audio to YouTube</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">Archive to YouTube</div>
+      <nav class="nav">
+        <a href="./app/">Open App</a>
+        <a href="./app/privacy">Privacy</a>
+        <a href="./app/terms">Terms</a>
+        <a href="https://github.com/151henry151/archive-to-yt" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Turn archive.org audio into YouTube videos.</h1>
+        <p>Use the <strong>command line</strong> or the <strong>Web UI</strong>. Paste an archive.org details URL, preview the tracks, and upload them to YouTube as videos with static artwork. Creates a playlist automatically. Perfect for live recordings, concerts, and audio collections.</p>
+        <p style="margin-bottom: 8px; color: var(--muted); font-size: 14px; font-weight: 500;">Try the Web UI in your browser:</p>
+        <div class="actions">
+          <a class="button primary large" href="./app/">Open Web UI</a>
+          <a class="button secondary" href="https://github.com/151henry151/archive-to-yt" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Key Features</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>🔗 Simple URL Input</h3>
+            <p>Paste any archive.org details URL and the app extracts tracks and metadata automatically.</p>
+          </div>
+          <div class="feature">
+            <h3>👁️ Preview Before Upload</h3>
+            <p>See track names, durations, and playlist details before any processing.</p>
+          </div>
+          <div class="feature">
+            <h3>🎬 Auto-Generated Videos</h3>
+            <p>Creates videos by combining each audio track with the archive.org page artwork.</p>
+          </div>
+          <div class="feature">
+            <h3>📺 YouTube Integration</h3>
+            <p>Sign in with YouTube, upload videos, and create a playlist. Web UI: runs in the browser with live progress; CLI: interactive prompts.</p>
+          </div>
+          <div class="feature">
+            <h3>📋 Rich Metadata</h3>
+            <p>Formats titles and descriptions from archive.org: artist, venue, date, lineage.</p>
+          </div>
+          <div class="feature">
+            <h3>⏸️ Resume Capability</h3>
+            <p>Detects existing downloads and videos so you can resume without starting over.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>How It Works</h2>
+        <div class="workflow">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Paste URL</h3>
+            <p>Enter an archive.org details page URL containing the audio collection.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Preview</h3>
+            <p>Review tracks, titles, and durations. Adjust or proceed.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Sign In</h3>
+            <p>Authenticate with YouTube to upload to your channel.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Process</h3>
+            <p>Downloads audio, creates videos, uploads to YouTube, and builds the playlist.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Use Cases</h2>
+        <div class="use-cases">
+          <div class="use-case">
+            <h3>🎸 Live Concert Archives</h3>
+            <p>Upload taper-friendly concert recordings from archive.org to YouTube.</p>
+          </div>
+          <div class="use-case">
+            <h3>🎙️ Podcast & Radio Archives</h3>
+            <p>Preserve and share radio broadcasts or podcast episodes stored on archive.org.</p>
+          </div>
+          <div class="use-case">
+            <h3>📚 Educational Audio</h3>
+            <p>Make lectures, interviews, or historical audio available on YouTube.</p>
+          </div>
+          <div class="use-case">
+            <h3>🔊 Bootleg & Field Recordings</h3>
+            <p>Give bootlegs and field recordings a video form for discovery on YouTube.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Technical Details</h2>
+        <div class="tech-details">
+          <div class="tech-item">
+            <h3>Source</h3>
+            <p>Archive.org (Internet Archive) detail pages</p>
+          </div>
+          <div class="tech-item">
+            <h3>Output</h3>
+            <p>YouTube videos with playlist, 1080p H.264, AAC audio</p>
+          </div>
+          <div class="tech-item">
+            <h3>Platform</h3>
+            <p>Web app (browser) + Python CLI available</p>
+          </div>
+          <div class="tech-item">
+            <h3>License</h3>
+            <p>GNU General Public License v3.0</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Links</h2>
+        <div class="badges">
+          <a class="badge" href="./app/">Web UI</a>
+          <a class="badge" href="https://github.com/151henry151/archive-to-yt" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          <a class="badge" href="./app/privacy">Privacy Policy</a>
+          <a class="badge" href="./app/terms">Terms of Service</a>
+        </div>
+        <p style="margin-top: 12px; font-size: 14px; color: var(--muted);">For CLI usage: clone the repo, install dependencies, and run <code>python upload.py &lt;archive.org URL&gt;</code>. See the <a href="https://github.com/151henry151/archive-to-yt#readme" target="_blank" rel="noopener noreferrer">README</a> for setup.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © 2025 Archive to YouTube. <a href="./app/privacy">Privacy Policy</a> · <a href="./app/terms">Terms of Service</a> · <a href="https://github.com/151henry151/archive-to-yt" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
